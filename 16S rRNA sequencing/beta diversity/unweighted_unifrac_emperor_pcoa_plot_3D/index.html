@@ -1,0 +1,517 @@
+<!--
+*Summary of Emperor's Information*
+Command executed on January 03, 2019 at 11:08:06
+Emperor Version: 0.9.60
+HostName: QIIME.cvm.tamu.edu
+Metadata: /home/bsarawichitr/Project_pepperAustralia/Mapping_file_Pepper_with_metadata_12132018.txt
+Coordinates: /home/bsarawichitr/Project_pepperAustralia/combined/open_reference_otus/bdiv/unweighted_unifrac_pc.txt
+Command: /bin/make_emperor.py -i combined/open_reference_otus/bdiv//unweighted_unifrac_pc.txt -o combined/open_reference_otus/bdiv//unweighted_unifrac_emperor_pcoa_plot/ -m Mapping_file_Pepper_with_metadata_12132018.txt
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Emperor</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="emperor_required_resources/img/favicon.ico" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <!-- Style files -->
+    <link rel="stylesheet" type="text/css" href="emperor_required_resources/css/emperor.css">
+    <link rel="stylesheet" type="text/css" href="emperor_required_resources/vendor/css/jquery-ui2.css">
+    <link rel="stylesheet" type="text/css" href="emperor_required_resources/vendor/css/colorPicker.css">
+    <link rel="stylesheet" type="text/css" href="emperor_required_resources/vendor/css/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="emperor_required_resources/vendor/css/d3.parcoords.css">
+    <link rel="stylesheet" type="text/css" href="emperor_required_resources/vendor/css/chosen.min.css">
+
+    <!-- Emperor logo for the splash window -->
+    <table id="logotable" style="vertical-align:middle;text-align:center;height:100%;width:100%;margin:0;padding:0;border:0;">
+        <tr><td><img src="emperor_required_resources/img/emperor.png" alt="Emperor" id="logo"/></td></tr>
+    </table>
+
+    <!-- JavaScript code -->
+
+    <!-- jQuery and other plugins -->
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/jquery.colorPicker.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/spectrum.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/chosen.jquery.min.js"></script>
+
+    <!-- D3.js for the parallel coordinates plugin -->
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/d3.v3.min.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/d3.parcoords.js"></script>
+
+    <!-- THREE.js and plugins for screenshots -->
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/three.min.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/three.js-plugins/Detector.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/three.js-plugins/OrbitControls.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/three.js-plugins/ColorConverter.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/three.js-plugins/SVGRenderer.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/THREEx.screenshot.js"></script>
+
+    <!-- General utilities (underscore.js and FileSaver.js) -->
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/underscore-min.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/chroma.min.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/vendor/js/FileSaver.min.js"></script>
+
+    <!-- Emperor library code -->
+    <script type="text/javascript" src="emperor_required_resources/js/animate.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/js/draw.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/js/emperor.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/js/trajectory.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/js/ui.js"></script>
+    <script type="text/javascript" src="emperor_required_resources/js/util.js"></script>
+    <script type="text/javascript">
+
+var g_mappingFileHeaders = ['SampleID','BarcodeSequence','LinkerPrimerSequence','BarcodeName','ProjectName','DogName','Age','Dateofhunt','Sex','Diet','Diettype','DietCategory','FatDM','Fatg100kcalME','CHODM','CHOg100ME','ProteinDM','Proteing100kcalME','DietSequence'];
+var g_mappingFileData = { 'Aus.K9.171': ['Aus.K9.171','GAATGAAC','GTGCCAGCMGCCGCGGTAA','515Fbar169','101014JS515Fillumina1','brightly','5','2010','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.170': ['Aus.K9.170','GAAGTGCC','GTGCCAGCMGCCGCGGTAA','515Fbar168','101014JS515Fillumina1','promise','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.1': ['Aus.K9.1','GAGAGTGT','GTGCCAGCMGCCGCGGTAA','515Fbar1','101014JS515Fillumina1','mustard','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.172': ['Aus.K9.172','GAATGCCG','GTGCCAGCMGCCGCGGTAA','515Fbar170','101014JS515Fillumina1','hazard','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.7': ['Aus.K9.7','GAGTACTC','GTGCCAGCMGCCGCGGTAA','515Fbar7','101014JS515Fillumina1','bandit','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.6': ['Aus.K9.6','GAGTACAG','GTGCCAGCMGCCGCGGTAA','515Fbar6','101014JS515Fillumina1','amber','9','2006','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.177': ['Aus.K9.177','GACAGTGA','GTGCCAGCMGCCGCGGTAA','515Fbar175','101014JS515Fillumina1','anguish','4','2011','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.176': ['Aus.K9.176','GACAGTCA','GTGCCAGCMGCCGCGGTAA','515Fbar174','101014JS515Fillumina1','carlton','3','2012','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.179': ['Aus.K9.179','GACATCTT','GTGCCAGCMGCCGCGGTAA','515Fbar177','101014JS515Fillumina1','amber','9','2006','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.178': ['Aus.K9.178','GACATAGC','GTGCCAGCMGCCGCGGTAA','515Fbar176','101014JS515Fillumina1','baxter','1','2014','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.9': ['Aus.K9.9','GAGTAGTG','GTGCCAGCMGCCGCGGTAA','515Fbar9','101014JS515Fillumina1','admiral','6','2009','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.8': ['Aus.K9.8','GAGTAGAC','GTGCCAGCMGCCGCGGTAA','515Fbar8','101014JS515Fillumina1','rena','4','2011','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.173': ['Aus.K9.173','GAATGGAG','GTGCCAGCMGCCGCGGTAA','515Fbar171','101014JS515Fillumina1','bachelor','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.174': ['Aus.K9.174','GACAAGAG','GTGCCAGCMGCCGCGGTAA','515Fbar172','101014JS515Fillumina1','ascot','7','2008','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.31': ['Aus.K9.31','GATCGAAG','GTGCCAGCMGCCGCGGTAA','515Fbar30','101014JS515Fillumina1','gaffa','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.30': ['Aus.K9.30','GATCCTTC','GTGCCAGCMGCCGCGGTAA','515Fbar29','101014JS515Fillumina1','gaffa','5','2010','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.32': ['Aus.K9.32','GATCGATC','GTGCCAGCMGCCGCGGTAA','515Fbar31','101014JS515Fillumina1','bentley','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.35': ['Aus.K9.35','GATCTCCT','GTGCCAGCMGCCGCGGTAA','515Fbar34','101014JS515Fillumina1','banker','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.36': ['Aus.K9.36','GATCTCGA','GTGCCAGCMGCCGCGGTAA','515Fbar35','101014JS515Fillumina1','anqor','7','2008','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.39': ['Aus.K9.39','GATGACCT','GTGCCAGCMGCCGCGGTAA','515Fbar38','101014JS515Fillumina1','beauty','7','2008','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.38': ['Aus.K9.38','GATCTGGT','GTGCCAGCMGCCGCGGTAA','515Fbar37','101014JS515Fillumina1','bookmaker','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.209': ['Aus.K9.209','GAGTACTC','GTGCCAGCMGCCGCGGTAA','515Fbar7','101014JS515Fillumina1','bradman','7','2008','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.208': ['Aus.K9.208','GAGTACAG','GTGCCAGCMGCCGCGGTAA','515Fbar6','101014JS515Fillumina1','admiral','6','2009','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.203': ['Aus.K9.203','GAGAGTGT','GTGCCAGCMGCCGCGGTAA','515Fbar1','101014JS515Fillumina1','mansfield','6','2009','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.202': ['Aus.K9.202','GAGCCGAA','GTGCCAGCMGCCGCGGTAA','515Fbar200','101014JS515Fillumina1','hazard','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.201': ['Aus.K9.201','GAGCATTC','GTGCCAGCMGCCGCGGTAA','515Fbar199','101014JS515Fillumina1','ascot','7','2008','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.200': ['Aus.K9.200','GAGCAGAC','GTGCCAGCMGCCGCGGTAA','515Fbar198','101014JS515Fillumina1','hiccup','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.207': ['Aus.K9.207','GAGATGTG','GTGCCAGCMGCCGCGGTAA','515Fbar5','101014JS515Fillumina1','allaby','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.206': ['Aus.K9.206','GAGATGAC','GTGCCAGCMGCCGCGGTAA','515Fbar4','101014JS515Fillumina1','barman','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.205': ['Aus.K9.205','GAGATCTC','GTGCCAGCMGCCGCGGTAA','515Fbar3','101014JS515Fillumina1','ascot','7','2008','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.204': ['Aus.K9.204','GAGATCAG','GTGCCAGCMGCCGCGGTAA','515Fbar2','101014JS515Fillumina1','hero','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.145': ['Aus.K9.145','CTTAGGAC','GTGCCAGCMGCCGCGGTAA','515Fbar143','101014JS515Fillumina1','banjo','4','2011','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.147': ['Aus.K9.147','CTTCCATG','GTGCCAGCMGCCGCGGTAA','515Fbar145','101014JS515Fillumina1','blackprint','10','2005','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.140': ['Aus.K9.140','GCAGATTG','GTGCCAGCMGCCGCGGTAA','515Fbar138','101014JS515Fillumina1','amigo','8','2007','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.141': ['Aus.K9.141','CTGGGTAC','GTGCCAGCMGCCGCGGTAA','515Fbar139','101014JS515Fillumina1','amigo','8','2007','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.143': ['Aus.K9.143','CTGTACAC','GTGCCAGCMGCCGCGGTAA','515Fbar141','101014JS515Fillumina1','amigo','8','2007','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.148': ['Aus.K9.148','CTTCCCGT','GTGCCAGCMGCCGCGGTAA','515Fbar146','101014JS515Fillumina1','bentley','1','2014','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.149': ['Aus.K9.149','CTTCCTCA','GTGCCAGCMGCCGCGGTAA','515Fbar147','101014JS515Fillumina1','baxter','1','2014','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.22': ['Aus.K9.22','GATCACCA','GTGCCAGCMGCCGCGGTAA','515Fbar22','101014JS515Fillumina1','kindle','4','2011','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.23': ['Aus.K9.23','GATCACGT','GTGCCAGCMGCCGCGGTAA','515Fbar23','101014JS515Fillumina1','barman','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.21': ['Aus.K9.21','GAGTTGTC','GTGCCAGCMGCCGCGGTAA','515Fbar21','101014JS515Fillumina1','favour','3','2012','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.26': ['Aus.K9.26','GATCCAAC','GTGCCAGCMGCCGCGGTAA','515Fbar26','101014JS515Fillumina1','bandit','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.27': ['Aus.K9.27','GATCCATG','GTGCCAGCMGCCGCGGTAA','515Fbar27','101014JS515Fillumina1','hugh','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.24': ['Aus.K9.24','GATCAGCT','GTGCCAGCMGCCGCGGTAA','515Fbar24','101014JS515Fillumina1','hugh','1','2014','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.25': ['Aus.K9.25','GATCAGGA','GTGCCAGCMGCCGCGGTAA','515Fbar25','101014JS515Fillumina1','gerlert','5','2010','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.28': ['Aus.K9.28','GATCCTAG','GTGCCAGCMGCCGCGGTAA','515Fbar28','101014JS515Fillumina1','beauty','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.29': ['Aus.K9.29','GATGAGGT','GTGCCAGCMGCCGCGGTAA','515Fbar41','101014JS515Fillumina1','nigel','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.218': ['Aus.K9.218','GAGTGTCT','GTGCCAGCMGCCGCGGTAA','515Fbar16','101014JS515Fillumina1','allaby','6','2009','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.228': ['Aus.K9.228','GATCCAAC','GTGCCAGCMGCCGCGGTAA','515Fbar26','101014JS515Fillumina1','anguish','4','2011','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.17': ['Aus.K9.17','GAGTGTGA','GTGCCAGCMGCCGCGGTAA','515Fbar17','101014JS515Fillumina1','promise','7','2008','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.15': ['Aus.K9.15','GAGTGAGT','GTGCCAGCMGCCGCGGTAA','515Fbar15','101014JS515Fillumina1','halifax','3','2012','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.14': ['Aus.K9.14','GAGTGACA','GTGCCAGCMGCCGCGGTAA','515Fbar14','101014JS515Fillumina1','acorn','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.12': ['Aus.K9.12','GAGTCTCA','GTGCCAGCMGCCGCGGTAA','515Fbar12','101014JS515Fillumina1','banjo','4','2011','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.11': ['Aus.K9.11','GAGTCAGA','GTGCCAGCMGCCGCGGTAA','515Fbar11','101014JS515Fillumina1','gaffa','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.18': ['Aus.K9.18','GAGTTCAC','GTGCCAGCMGCCGCGGTAA','515Fbar18','101014JS515Fillumina1','charcoal','5','2010','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.99': ['Aus.K9.99','GAGCATGC','GTGCCAGCMGCCGCGGTAA','515Fbar97','101014JS515Fillumina1','acorn','7','2008','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.97': ['Aus.K9.97','GAGACGTG','GTGCCAGCMGCCGCGGTAA','515Fbar95','101014JS515Fillumina1','hero','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.94': ['Aus.K9.94','GAGACCAC','GTGCCAGCMGCCGCGGTAA','515Fbar92','101014JS515Fillumina1','anqor','7','2008','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.93': ['Aus.K9.93','GAGAATGA','GTGCCAGCMGCCGCGGTAA','515Fbar91','101014JS515Fillumina1','hero','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.92': ['Aus.K9.92','GAGAACCT','GTGCCAGCMGCCGCGGTAA','515Fbar90','101014JS515Fillumina1','hiccup','6','2009','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.90': ['Aus.K9.90','CGCTACAT','GTGCCAGCMGCCGCGGTAA','515Fbar88','101014JS515Fillumina1','alphabet','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.241': ['Aus.K9.241','GATGACGA','GTGCCAGCMGCCGCGGTAA','515Fbar39','101014JS515Fillumina1','honest','8','2007','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.240': ['Aus.K9.240','GATGACCT','GTGCCAGCMGCCGCGGTAA','515Fbar38','101014JS515Fillumina1','mansfield','6','2009','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.80': ['Aus.K9.80','CGATGCAC','GTGCCAGCMGCCGCGGTAA','515Fbar78','101014JS515Fillumina1','kernal','4','2011','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.82': ['Aus.K9.82','CGCACGAC','GTGCCAGCMGCCGCGGTAA','515Fbar80','101014JS515Fillumina1','beach boy','5','2010','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.83': ['Aus.K9.83','CGCAGCTG','GTGCCAGCMGCCGCGGTAA','515Fbar81','101014JS515Fillumina1','nigel','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.85': ['Aus.K9.85','CGCCCAAT','GTGCCAGCMGCCGCGGTAA','515Fbar83','101014JS515Fillumina1','honest','8','2007','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.87': ['Aus.K9.87','CGCGAGAC','GTGCCAGCMGCCGCGGTAA','515Fbar85','101014JS515Fillumina1','mustard','1','2014','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.88': ['Aus.K9.88','CGCGATAA','GTGCCAGCMGCCGCGGTAA','515Fbar86','101014JS515Fillumina1','kindle','4','2011','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.89': ['Aus.K9.89','CGCGCCAA','GTGCCAGCMGCCGCGGTAA','515Fbar87','101014JS515Fillumina1','gerlert','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.151': ['Aus.K9.151','CTTCGGAC','GTGCCAGCMGCCGCGGTAA','515Fbar149','101014JS515Fillumina1','amber','9','2006','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.150': ['Aus.K9.150','CTTCGCCG','GTGCCAGCMGCCGCGGTAA','515Fbar148','101014JS515Fillumina1','banker','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.157': ['Aus.K9.157','CTTTAGCC','GTGCCAGCMGCCGCGGTAA','515Fbar155','101014JS515Fillumina1','nigel','5','2010','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.155': ['Aus.K9.155','CTTGGTCA','GTGCCAGCMGCCGCGGTAA','515Fbar153','101014JS515Fillumina1','kernal','4','2011','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.154': ['Aus.K9.154','CTTGCCCG','GTGCCAGCMGCCGCGGTAA','515Fbar152','101014JS515Fillumina1','hugh','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.233': ['Aus.K9.233','GATCGATC','GTGCCAGCMGCCGCGGTAA','515Fbar31','101014JS515Fillumina1','favour','3','2012','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.230': ['Aus.K9.230','GATCCTAG','GTGCCAGCMGCCGCGGTAA','515Fbar28','101014JS515Fillumina1','favour','3','2012','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.231': ['Aus.K9.231','GATCCTTC','GTGCCAGCMGCCGCGGTAA','515Fbar29','101014JS515Fillumina1','hazard','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.236': ['Aus.K9.236','GATCTCCT','GTGCCAGCMGCCGCGGTAA','515Fbar34','101014JS515Fillumina1','brightly','5','2010','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.237': ['Aus.K9.237','GATCTCGA','GTGCCAGCMGCCGCGGTAA','515Fbar35','101014JS515Fillumina1','carlton','3','2012','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.235': ['Aus.K9.235','GATCGTTG','GTGCCAGCMGCCGCGGTAA','515Fbar33','101014JS515Fillumina1','charcoal','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.239': ['Aus.K9.239','GATCTGGT','GTGCCAGCMGCCGCGGTAA','515Fbar37','101014JS515Fillumina1','charcoal','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.79': ['Aus.K9.79','CGATATCT','GTGCCAGCMGCCGCGGTAA','515Fbar77','101014JS515Fillumina1','honest','8','2007','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.78': ['Aus.K9.78','CGATACGT','GTGCCAGCMGCCGCGGTAA','515Fbar76','101014JS515Fillumina1','nector','6','2009','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.75': ['Aus.K9.75','CGAGAATA','GTGCCAGCMGCCGCGGTAA','515Fbar73','101014JS515Fillumina1','barman','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.74': ['Aus.K9.74','CGACTGTA','GTGCCAGCMGCCGCGGTAA','515Fbar72','101014JS515Fillumina1','beach boy','5','2010','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.77': ['Aus.K9.77','CGAGTGAC','GTGCCAGCMGCCGCGGTAA','515Fbar75','101014JS515Fillumina1','alphabet','6','2009','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.76': ['Aus.K9.76','CGAGGATG','GTGCCAGCMGCCGCGGTAA','515Fbar74','101014JS515Fillumina1','nector','6','2009','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.71': ['Aus.K9.71','CGAATGAT','GTGCCAGCMGCCGCGGTAA','515Fbar69','101014JS515Fillumina1','cybil','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.70': ['Aus.K9.70','CGAAGTCA','GTGCCAGCMGCCGCGGTAA','515Fbar68','101014JS515Fillumina1','carlton','3','2012','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.73': ['Aus.K9.73','CGACATAT','GTGCCAGCMGCCGCGGTAA','515Fbar71','101014JS515Fillumina1','promise','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.72': ['Aus.K9.72','CGACAGCT','GTGCCAGCMGCCGCGGTAA','515Fbar70','101014JS515Fillumina1','anguish','4','2011','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.128': ['Aus.K9.128','GATTTGCC','GTGCCAGCMGCCGCGGTAA','515Fbar126','101014JS515Fillumina1','blackprint','10','2005','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.129': ['Aus.K9.129','GCAAAAAG','GTGCCAGCMGCCGCGGTAA','515Fbar127','101014JS515Fillumina1','rena','4','2011','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.126': ['Aus.K9.126','GATTGGGA','GTGCCAGCMGCCGCGGTAA','515Fbar124','101014JS515Fillumina1','bedlam','2','2013','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.124': ['Aus.K9.124','GATTAGTG','GTGCCAGCMGCCGCGGTAA','515Fbar122','101014JS515Fillumina1','promise','7','2008','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.125': ['Aus.K9.125','GATTGCGT','GTGCCAGCMGCCGCGGTAA','515Fbar123','101014JS515Fillumina1','bradman','7','2008','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.122': ['Aus.K9.122','GATGTCCG','GTGCCAGCMGCCGCGGTAA','515Fbar120','101014JS515Fillumina1','acorn','7','2008','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.123': ['Aus.K9.123','GATGTCTT','GTGCCAGCMGCCGCGGTAA','515Fbar121','101014JS515Fillumina1','bandit','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.120': ['Aus.K9.120','GATGAGGC','GTGCCAGCMGCCGCGGTAA','515Fbar118','101014JS515Fillumina1','allaby','6','2009','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.121': ['Aus.K9.121','GATGGGTC','GTGCCAGCMGCCGCGGTAA','515Fbar119','101014JS515Fillumina1','banjo','4','2011','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.188': ['Aus.K9.188','GACTAGGT','GTGCCAGCMGCCGCGGTAA','515Fbar186','101014JS515Fillumina1','blackprint','10','2005','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.223': ['Aus.K9.223','GAGTTGTC','GTGCCAGCMGCCGCGGTAA','515Fbar21','101014JS515Fillumina1','mansfield','6','2009','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.222': ['Aus.K9.222','GAGTTGAG','GTGCCAGCMGCCGCGGTAA','515Fbar20','101014JS515Fillumina1','bookmaker','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.225': ['Aus.K9.225','GATCACGT','GTGCCAGCMGCCGCGGTAA','515Fbar23','101014JS515Fillumina1','mansfield','6','2009','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.224': ['Aus.K9.224','GATCACCA','GTGCCAGCMGCCGCGGTAA','515Fbar22','101014JS515Fillumina1','nigel','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.226': ['Aus.K9.226','GATCAGCT','GTGCCAGCMGCCGCGGTAA','515Fbar24','101014JS515Fillumina1','bookmaker','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.180': ['Aus.K9.180','GACCCAAT','GTGCCAGCMGCCGCGGTAA','515Fbar178','101014JS515Fillumina1','bachelor','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.181': ['Aus.K9.181','GACCGCAT','GTGCCAGCMGCCGCGGTAA','515Fbar179','101014JS515Fillumina1','bachelor','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.183': ['Aus.K9.183','GACGATCG','GTGCCAGCMGCCGCGGTAA','515Fbar181','101014JS515Fillumina1','kindle','4','2011','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.184': ['Aus.K9.184','GACGCGCT','GTGCCAGCMGCCGCGGTAA','515Fbar182','101014JS515Fillumina1','banker','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.186': ['Aus.K9.186','GACTAACC','GTGCCAGCMGCCGCGGTAA','515Fbar184','101014JS515Fillumina1','beauty','7','2008','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.187': ['Aus.K9.187','GACTACTT','GTGCCAGCMGCCGCGGTAA','515Fbar185','101014JS515Fillumina1','spitster','2','2013','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.68': ['Aus.K9.68','CCTTGGCT','GTGCCAGCMGCCGCGGTAA','515Fbar66','101014JS515Fillumina1','brightly','5','2010','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.69': ['Aus.K9.69','CGAACCTG','GTGCCAGCMGCCGCGGTAA','515Fbar67','101014JS515Fillumina1','banjo','4','2011','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.66': ['Aus.K9.66','CCTTGATC','GTGCCAGCMGCCGCGGTAA','515Fbar64','101014JS515Fillumina1','kernal','4','2011','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.65': ['Aus.K9.65','CCTTCTGG','GTGCCAGCMGCCGCGGTAA','515Fbar63','101014JS515Fillumina1','hugh','1','2014','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.63': ['Aus.K9.63','CCTGAGCA','GTGCCAGCMGCCGCGGTAA','515Fbar61','101014JS515Fillumina1','carlton','3','2012','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.60': ['Aus.K9.60','CCTCTCAG','GTGCCAGCMGCCGCGGTAA','515Fbar58','101014JS515Fillumina1','bedlam','2','2013','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.61': ['Aus.K9.61','CCTGACAT','GTGCCAGCMGCCGCGGTAA','515Fbar59','101014JS515Fillumina1','bachelor','2','2013','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.139': ['Aus.K9.139','GCAGAATT','GTGCCAGCMGCCGCGGTAA','515Fbar137','101014JS515Fillumina1','halifax','3','2012','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.138': ['Aus.K9.138','GCACTTAA','GTGCCAGCMGCCGCGGTAA','515Fbar136','101014JS515Fillumina1','bradman','7','2008','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.135': ['Aus.K9.135','GCACAACT','GTGCCAGCMGCCGCGGTAA','515Fbar133','101014JS515Fillumina1','spitster','2','2013','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.134': ['Aus.K9.134','GCACAACC','GTGCCAGCMGCCGCGGTAA','515Fbar132','101014JS515Fillumina1','beach boy','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.131': ['Aus.K9.131','GCAAGGCC','GTGCCAGCMGCCGCGGTAA','515Fbar129','101014JS515Fillumina1','anqor','7','2008','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.133': ['Aus.K9.133','GCAATCCA','GTGCCAGCMGCCGCGGTAA','515Fbar131','101014JS515Fillumina1','bradman','7','2008','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.132': ['Aus.K9.132','GCAAGTCA','GTGCCAGCMGCCGCGGTAA','515Fbar130','101014JS515Fillumina1','brightly','5','2010','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.215': ['Aus.K9.215','GAGTCTGT','GTGCCAGCMGCCGCGGTAA','515Fbar13','101014JS515Fillumina1','bedlam','2','2013','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.216': ['Aus.K9.216','GAGTGACA','GTGCCAGCMGCCGCGGTAA','515Fbar14','101014JS515Fillumina1','hiccup','6','2009','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.217': ['Aus.K9.217','GAGTGAGT','GTGCCAGCMGCCGCGGTAA','515Fbar15','101014JS515Fillumina1','gaffa','5','2010','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.210': ['Aus.K9.210','GAGTAGAC','GTGCCAGCMGCCGCGGTAA','515Fbar8','101014JS515Fillumina1','cybil','7','2008','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.211': ['Aus.K9.211','GAGTAGTG','GTGCCAGCMGCCGCGGTAA','515Fbar9','101014JS515Fillumina1','halifax','3','2012','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.199': ['Aus.K9.199','GAGCACAT','GTGCCAGCMGCCGCGGTAA','515Fbar197','101014JS515Fillumina1','bookmaker','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.198': ['Aus.K9.198','GAGAGGCC','GTGCCAGCMGCCGCGGTAA','515Fbar196','101014JS515Fillumina1','admiral','6','2009','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.197': ['Aus.K9.197','GAGACTGC','GTGCCAGCMGCCGCGGTAA','515Fbar195','101014JS515Fillumina1','rena','4','2011','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.196': ['Aus.K9.196','GAGACTGA','GTGCCAGCMGCCGCGGTAA','515Fbar194','101014JS515Fillumina1','nector','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.195': ['Aus.K9.195','GAGACTAA','GTGCCAGCMGCCGCGGTAA','515Fbar193','101014JS515Fillumina1','nector','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.194': ['Aus.K9.194','GACTTGGG','GTGCCAGCMGCCGCGGTAA','515Fbar192','101014JS515Fillumina1','favour','3','2012','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.193': ['Aus.K9.193','GACTTGCG','GTGCCAGCMGCCGCGGTAA','515Fbar191','101014JS515Fillumina1','cybil','7','2008','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.191': ['Aus.K9.191','GACTGGAA','GTGCCAGCMGCCGCGGTAA','515Fbar189','101014JS515Fillumina1','alphabet','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.190': ['Aus.K9.190','GACTCTTG','GTGCCAGCMGCCGCGGTAA','515Fbar188','101014JS515Fillumina1','gerlert','5','2010','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.53': ['Aus.K9.53','GATGCAAG','GTGCCAGCMGCCGCGGTAA','515Fbar42','101014JS515Fillumina1','allaby','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.52': ['Aus.K9.52','GATGTCGT','GTGCCAGCMGCCGCGGTAA','515Fbar51','101014JS515Fillumina1','ascot','7','2008','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.50': ['Aus.K9.50','GATGGTTC','GTGCCAGCMGCCGCGGTAA','515Fbar49','101014JS515Fillumina1','anguish','4','2011','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.56': ['Aus.K9.56','CCTATAGC','GTGCCAGCMGCCGCGGTAA','515Fbar54','101014JS515Fillumina1','cybil','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.58': ['Aus.K9.58','CCTCAGTA','GTGCCAGCMGCCGCGGTAA','515Fbar56','101014JS515Fillumina1','rena','4','2011','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.159': ['Aus.K9.159','CTTTGTCG','GTGCCAGCMGCCGCGGTAA','515Fbar157','101014JS515Fillumina1','baxter','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.100': ['Aus.K9.100','GAGCCGCG','GTGCCAGCMGCCGCGGTAA','515Fbar98','101014JS515Fillumina1','alphabet','6','2009','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.101': ['Aus.K9.101','GAGCGCGG','GTGCCAGCMGCCGCGGTAA','515Fbar99','101014JS515Fillumina1','hiccup','6','2009','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.158': ['Aus.K9.158','CTTTGAGT','GTGCCAGCMGCCGCGGTAA','515Fbar156','101014JS515Fillumina1','bentley','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.104': ['Aus.K9.104','GAGGCTGC','GTGCCAGCMGCCGCGGTAA','515Fbar102','101014JS515Fillumina1','kernal','4','2011','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.105': ['Aus.K9.105','GAGTGCGC','GTGCCAGCMGCCGCGGTAA','515Fbar103','101014JS515Fillumina1','banker','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.106': ['Aus.K9.106','GAGTTATG','GTGCCAGCMGCCGCGGTAA','515Fbar104','101014JS515Fillumina1','charcoal','5','2010','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.107': ['Aus.K9.107','GAGTTATT','GTGCCAGCMGCCGCGGTAA','515Fbar105','101014JS515Fillumina1','beauty','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.109': ['Aus.K9.109','GATAACTG','GTGCCAGCMGCCGCGGTAA','515Fbar107','101014JS515Fillumina1','mustard','1','2014','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.163': ['Aus.K9.163','CTTTTGCG','GTGCCAGCMGCCGCGGTAA','515Fbar161','101014JS515Fillumina1','honest','8','2007','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.160': ['Aus.K9.160','CTTTGTTA','GTGCCAGCMGCCGCGGTAA','515Fbar158','101014JS515Fillumina1','acorn','7','2008','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.161': ['Aus.K9.161','CTTTTATC','GTGCCAGCMGCCGCGGTAA','515Fbar159','101014JS515Fillumina1','amber','9','2006','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'],'Aus.K9.166': ['Aus.K9.166','GAACACGG','GTGCCAGCMGCCGCGGTAA','515Fbar164','101014JS515Fillumina1','spitster','2','2013','f','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.167': ['Aus.K9.167','GAACCGCC','GTGCCAGCMGCCGCGGTAA','515Fbar165','101014JS515Fillumina1','hazard','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.165': ['Aus.K9.165','GAACAAGA','GTGCCAGCMGCCGCGGTAA','515Fbar163','101014JS515Fillumina1','barman','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.169': ['Aus.K9.169','GAAGTCCC','GTGCCAGCMGCCGCGGTAA','515Fbar167','101014JS515Fillumina1','kindle','4','2011','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.153': ['Aus.K9.153','CTTGACGG','GTGCCAGCMGCCGCGGTAA','515Fbar151','101014JS515Fillumina1','admiral','6','2009','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.46': ['Aus.K9.46','GATGCTTG','GTGCCAGCMGCCGCGGTAA','515Fbar45','101014JS515Fillumina1','beach boy','5','2010','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.47': ['Aus.K9.47','GATGGAAC','GTGCCAGCMGCCGCGGTAA','515Fbar46','101014JS515Fillumina1','hero','2','2013','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.40': ['Aus.K9.40','GATGACGA','GTGCCAGCMGCCGCGGTAA','515Fbar39','101014JS515Fillumina1','bedlam','2','2013','f','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','acb'],'Aus.K9.42': ['Aus.K9.42','GATGAGGT','GTGCCAGCMGCCGCGGTAA','515Fbar41','101014JS515Fillumina1','blackprint','10','2005','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.43': ['Aus.K9.43','GATGCAAG','GTGCCAGCMGCCGCGGTAA','515Fbar42','101014JS515Fillumina1','spitster','2','2013','f','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.152': ['Aus.K9.152','CTTCGTGG','GTGCCAGCMGCCGCGGTAA','515Fbar150','101014JS515Fillumina1','halifax','3','2012','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.117': ['Aus.K9.117','GATCCACC','GTGCCAGCMGCCGCGGTAA','515Fbar115','101014JS515Fillumina1','bandit','2','2013','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.116': ['Aus.K9.116','GATCAACG','GTGCCAGCMGCCGCGGTAA','515Fbar114','101014JS515Fillumina1','mustard','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.115': ['Aus.K9.115','GATATGGG','GTGCCAGCMGCCGCGGTAA','515Fbar113','101014JS515Fillumina1','nigel','5','2010','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','bca'],'Aus.K9.114': ['Aus.K9.114','GATATAAC','GTGCCAGCMGCCGCGGTAA','515Fbar112','101014JS515Fillumina1','baxter','1','2014','m','c','meat','high protein','31','6.6','0','0','69','19.8','bca'],'Aus.K9.113': ['Aus.K9.113','GATAGATT','GTGCCAGCMGCCGCGGTAA','515Fbar111','101014JS515Fillumina1','bradman','7','2008','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.110': ['Aus.K9.110','GATAAGAG','GTGCCAGCMGCCGCGGTAA','515Fbar108','101014JS515Fillumina1','amigo','8','2007','f','c','meat','high protein','31','6.6','0','0','69','19.8','acb'],'Aus.K9.119': ['Aus.K9.119','GATCGGAA','GTGCCAGCMGCCGCGGTAA','515Fbar117','101014JS515Fillumina1','bentley','1','2014','m','b','w/d','high fibre','9.1','2.7','50.6','15','18.9','5.8','bca'],'Aus.K9.118': ['Aus.K9.118','GATCCGGT','GTGCCAGCMGCCGCGGTAA','515Fbar116','101014JS515Fillumina1','anqor','7','2008','m','a','z/d','hypoallergenic','14.4','3.4','56.7','14.7','19.1','4.7','acb'] };
+var g_animatableMappingFileHeaders = ['Age','Dateofhunt','FatDM','Fatg100kcalME','CHODM','CHOg100ME','ProteinDM','Proteing100kcalME'];
+
+var g_spherePositions = new Array();
+g_spherePositions['Aus.K9.1'] = { 'name': 'Aus.K9.1', 'color': 0, 'x': -0.146967, 'y': 0.104811, 'z': 0.070920, 'P1': -0.146967, 'P2': 0.104811, 'P3': 0.070920, 'P4': -0.074354, 'P5': 0.004549, 'P6': -0.026091, 'P7': 0.104253, 'P8': -0.052848, 'P9': -0.090910, 'P10': 0.045034 };
+g_spherePositions['Aus.K9.6'] = { 'name': 'Aus.K9.6', 'color': 0, 'x': 0.155989, 'y': 0.061379, 'z': -0.081965, 'P1': 0.155989, 'P2': 0.061379, 'P3': -0.081965, 'P4': 0.040684, 'P5': 0.009549, 'P6': 0.062381, 'P7': 0.039158, 'P8': 0.009559, 'P9': 0.000410, 'P10': -0.024765 };
+g_spherePositions['Aus.K9.7'] = { 'name': 'Aus.K9.7', 'color': 0, 'x': -0.112037, 'y': -0.157758, 'z': 0.068785, 'P1': -0.112037, 'P2': -0.157758, 'P3': 0.068785, 'P4': 0.056284, 'P5': -0.055719, 'P6': 0.129162, 'P7': 0.033530, 'P8': 0.051518, 'P9': -0.015207, 'P10': 0.012622 };
+g_spherePositions['Aus.K9.8'] = { 'name': 'Aus.K9.8', 'color': 0, 'x': 0.102713, 'y': 0.050451, 'z': 0.077902, 'P1': 0.102713, 'P2': 0.050451, 'P3': 0.077902, 'P4': -0.036390, 'P5': 0.052293, 'P6': 0.033654, 'P7': -0.037258, 'P8': 0.063111, 'P9': -0.002014, 'P10': -0.060124 };
+g_spherePositions['Aus.K9.9'] = { 'name': 'Aus.K9.9', 'color': 0, 'x': -0.011827, 'y': -0.035959, 'z': 0.182456, 'P1': -0.011827, 'P2': -0.035959, 'P3': 0.182456, 'P4': 0.016916, 'P5': -0.030164, 'P6': 0.040161, 'P7': -0.063259, 'P8': -0.028999, 'P9': -0.046534, 'P10': -0.063478 };
+g_spherePositions['Aus.K9.11'] = { 'name': 'Aus.K9.11', 'color': 0, 'x': -0.205578, 'y': 0.058189, 'z': 0.086046, 'P1': -0.205578, 'P2': 0.058189, 'P3': 0.086046, 'P4': -0.032797, 'P5': -0.011648, 'P6': 0.027895, 'P7': 0.024353, 'P8': -0.065114, 'P9': -0.096001, 'P10': 0.006362 };
+g_spherePositions['Aus.K9.12'] = { 'name': 'Aus.K9.12', 'color': 0, 'x': 0.069048, 'y': 0.040206, 'z': 0.069995, 'P1': 0.069048, 'P2': 0.040206, 'P3': 0.069995, 'P4': 0.000495, 'P5': -0.016139, 'P6': -0.007567, 'P7': -0.004137, 'P8': 0.004796, 'P9': 0.033392, 'P10': 0.021079 };
+g_spherePositions['Aus.K9.14'] = { 'name': 'Aus.K9.14', 'color': 0, 'x': -0.134369, 'y': 0.121484, 'z': 0.041943, 'P1': -0.134369, 'P2': 0.121484, 'P3': 0.041943, 'P4': -0.032104, 'P5': 0.027052, 'P6': -0.046664, 'P7': 0.021194, 'P8': -0.031345, 'P9': -0.089138, 'P10': 0.052905 };
+g_spherePositions['Aus.K9.15'] = { 'name': 'Aus.K9.15', 'color': 0, 'x': -0.055735, 'y': 0.046403, 'z': 0.053785, 'P1': -0.055735, 'P2': 0.046403, 'P3': 0.053785, 'P4': -0.013656, 'P5': -0.010247, 'P6': -0.036067, 'P7': -0.097180, 'P8': -0.062553, 'P9': 0.009764, 'P10': 0.005761 };
+g_spherePositions['Aus.K9.17'] = { 'name': 'Aus.K9.17', 'color': 0, 'x': 0.043679, 'y': -0.015548, 'z': 0.167686, 'P1': 0.043679, 'P2': -0.015548, 'P3': 0.167686, 'P4': -0.043875, 'P5': -0.019138, 'P6': 0.071880, 'P7': -0.010964, 'P8': -0.006165, 'P9': 0.007336, 'P10': -0.085140 };
+g_spherePositions['Aus.K9.18'] = { 'name': 'Aus.K9.18', 'color': 0, 'x': 0.010346, 'y': -0.158369, 'z': 0.044424, 'P1': 0.010346, 'P2': -0.158369, 'P3': 0.044424, 'P4': -0.028875, 'P5': -0.129698, 'P6': -0.058202, 'P7': 0.041498, 'P8': 0.035302, 'P9': -0.040078, 'P10': -0.010028 };
+g_spherePositions['Aus.K9.21'] = { 'name': 'Aus.K9.21', 'color': 0, 'x': 0.207317, 'y': -0.020332, 'z': -0.082350, 'P1': 0.207317, 'P2': -0.020332, 'P3': -0.082350, 'P4': -0.041640, 'P5': -0.018251, 'P6': -0.024105, 'P7': 0.067697, 'P8': -0.042651, 'P9': -0.057154, 'P10': -0.080737 };
+g_spherePositions['Aus.K9.22'] = { 'name': 'Aus.K9.22', 'color': 0, 'x': -0.178775, 'y': 0.127897, 'z': -0.047557, 'P1': -0.178775, 'P2': 0.127897, 'P3': -0.047557, 'P4': -0.000467, 'P5': 0.030823, 'P6': -0.060119, 'P7': 0.014363, 'P8': 0.099268, 'P9': -0.078964, 'P10': -0.050195 };
+g_spherePositions['Aus.K9.23'] = { 'name': 'Aus.K9.23', 'color': 0, 'x': -0.040270, 'y': -0.199154, 'z': -0.050989, 'P1': -0.040270, 'P2': -0.199154, 'P3': -0.050989, 'P4': -0.093197, 'P5': 0.090841, 'P6': -0.077126, 'P7': 0.009251, 'P8': -0.056850, 'P9': 0.014572, 'P10': -0.011530 };
+g_spherePositions['Aus.K9.24'] = { 'name': 'Aus.K9.24', 'color': 0, 'x': 0.141535, 'y': -0.098505, 'z': 0.014318, 'P1': 0.141535, 'P2': -0.098505, 'P3': 0.014318, 'P4': -0.033237, 'P5': -0.069304, 'P6': -0.042234, 'P7': 0.038022, 'P8': 0.026389, 'P9': -0.017937, 'P10': -0.019165 };
+g_spherePositions['Aus.K9.25'] = { 'name': 'Aus.K9.25', 'color': 0, 'x': 0.155127, 'y': 0.022261, 'z': 0.107552, 'P1': 0.155127, 'P2': 0.022261, 'P3': 0.107552, 'P4': -0.049495, 'P5': 0.009705, 'P6': 0.048482, 'P7': 0.014093, 'P8': 0.001443, 'P9': -0.048070, 'P10': -0.080539 };
+g_spherePositions['Aus.K9.26'] = { 'name': 'Aus.K9.26', 'color': 0, 'x': -0.095272, 'y': 0.093867, 'z': -0.079777, 'P1': -0.095272, 'P2': 0.093867, 'P3': -0.079777, 'P4': 0.053568, 'P5': -0.007990, 'P6': 0.059555, 'P7': -0.035715, 'P8': 0.012051, 'P9': -0.111146, 'P10': -0.025264 };
+g_spherePositions['Aus.K9.27'] = { 'name': 'Aus.K9.27', 'color': 0, 'x': 0.150993, 'y': 0.021619, 'z': -0.044375, 'P1': 0.150993, 'P2': 0.021619, 'P3': -0.044375, 'P4': 0.004925, 'P5': -0.005762, 'P6': -0.018007, 'P7': 0.040657, 'P8': 0.001409, 'P9': -0.048360, 'P10': -0.005305 };
+g_spherePositions['Aus.K9.28'] = { 'name': 'Aus.K9.28', 'color': 0, 'x': -0.093219, 'y': 0.059679, 'z': -0.097162, 'P1': -0.093219, 'P2': 0.059679, 'P3': -0.097162, 'P4': 0.006306, 'P5': -0.009672, 'P6': -0.058881, 'P7': -0.065366, 'P8': 0.116680, 'P9': -0.023154, 'P10': -0.030139 };
+g_spherePositions['Aus.K9.29'] = { 'name': 'Aus.K9.29', 'color': 0, 'x': -0.094956, 'y': 0.131421, 'z': 0.054475, 'P1': -0.094956, 'P2': 0.131421, 'P3': 0.054475, 'P4': 0.084207, 'P5': 0.063271, 'P6': -0.126766, 'P7': -0.037865, 'P8': -0.002399, 'P9': 0.064312, 'P10': -0.000425 };
+g_spherePositions['Aus.K9.30'] = { 'name': 'Aus.K9.30', 'color': 0, 'x': 0.186639, 'y': -0.046023, 'z': -0.067376, 'P1': 0.186639, 'P2': -0.046023, 'P3': -0.067376, 'P4': 0.001731, 'P5': -0.062954, 'P6': -0.039546, 'P7': 0.065053, 'P8': -0.060707, 'P9': -0.042028, 'P10': -0.049348 };
+g_spherePositions['Aus.K9.31'] = { 'name': 'Aus.K9.31', 'color': 0, 'x': 0.172689, 'y': 0.015145, 'z': -0.015153, 'P1': 0.172689, 'P2': 0.015145, 'P3': -0.015153, 'P4': -0.027611, 'P5': 0.048958, 'P6': 0.030521, 'P7': 0.056822, 'P8': 0.016818, 'P9': -0.037410, 'P10': -0.023878 };
+g_spherePositions['Aus.K9.32'] = { 'name': 'Aus.K9.32', 'color': 0, 'x': -0.133378, 'y': 0.099960, 'z': 0.067212, 'P1': -0.133378, 'P2': 0.099960, 'P3': 0.067212, 'P4': -0.119548, 'P5': -0.029982, 'P6': 0.018476, 'P7': 0.081608, 'P8': 0.017329, 'P9': -0.007830, 'P10': 0.047504 };
+g_spherePositions['Aus.K9.35'] = { 'name': 'Aus.K9.35', 'color': 0, 'x': 0.170497, 'y': -0.034868, 'z': -0.033647, 'P1': 0.170497, 'P2': -0.034868, 'P3': -0.033647, 'P4': -0.037017, 'P5': -0.004732, 'P6': -0.033460, 'P7': 0.068104, 'P8': -0.004407, 'P9': -0.023977, 'P10': -0.030117 };
+g_spherePositions['Aus.K9.36'] = { 'name': 'Aus.K9.36', 'color': 0, 'x': 0.063186, 'y': 0.115636, 'z': 0.047703, 'P1': 0.063186, 'P2': 0.115636, 'P3': 0.047703, 'P4': -0.040680, 'P5': 0.059493, 'P6': -0.026427, 'P7': -0.006092, 'P8': 0.007890, 'P9': 0.019260, 'P10': -0.049857 };
+g_spherePositions['Aus.K9.38'] = { 'name': 'Aus.K9.38', 'color': 0, 'x': -0.196967, 'y': 0.079406, 'z': 0.038792, 'P1': -0.196967, 'P2': 0.079406, 'P3': 0.038792, 'P4': 0.013800, 'P5': 0.002306, 'P6': 0.002135, 'P7': 0.037012, 'P8': 0.012991, 'P9': -0.045371, 'P10': -0.014469 };
+g_spherePositions['Aus.K9.39'] = { 'name': 'Aus.K9.39', 'color': 0, 'x': -0.033928, 'y': -0.186934, 'z': -0.102224, 'P1': -0.033928, 'P2': -0.186934, 'P3': -0.102224, 'P4': -0.109978, 'P5': 0.092791, 'P6': -0.011737, 'P7': 0.011073, 'P8': -0.071303, 'P9': 0.073796, 'P10': -0.041300 };
+g_spherePositions['Aus.K9.40'] = { 'name': 'Aus.K9.40', 'color': 0, 'x': -0.108532, 'y': -0.226782, 'z': -0.056232, 'P1': -0.108532, 'P2': -0.226782, 'P3': -0.056232, 'P4': -0.061687, 'P5': 0.078532, 'P6': 0.015710, 'P7': -0.007294, 'P8': -0.081345, 'P9': 0.023619, 'P10': -0.031848 };
+g_spherePositions['Aus.K9.42'] = { 'name': 'Aus.K9.42', 'color': 0, 'x': -0.042627, 'y': 0.078502, 'z': -0.030092, 'P1': -0.042627, 'P2': 0.078502, 'P3': -0.030092, 'P4': -0.016079, 'P5': -0.024061, 'P6': -0.013002, 'P7': 0.029541, 'P8': -0.038079, 'P9': -0.038160, 'P10': 0.094289 };
+g_spherePositions['Aus.K9.43'] = { 'name': 'Aus.K9.43', 'color': 0, 'x': -0.065658, 'y': 0.090018, 'z': -0.003095, 'P1': -0.065658, 'P2': 0.090018, 'P3': -0.003095, 'P4': -0.057905, 'P5': -0.002520, 'P6': -0.021981, 'P7': 0.003427, 'P8': -0.009621, 'P9': 0.040927, 'P10': 0.098597 };
+g_spherePositions['Aus.K9.46'] = { 'name': 'Aus.K9.46', 'color': 0, 'x': 0.174740, 'y': 0.079494, 'z': -0.104046, 'P1': 0.174740, 'P2': 0.079494, 'P3': -0.104046, 'P4': 0.051053, 'P5': 0.030230, 'P6': 0.032070, 'P7': 0.039986, 'P8': -0.011513, 'P9': -0.000842, 'P10': -0.026798 };
+g_spherePositions['Aus.K9.47'] = { 'name': 'Aus.K9.47', 'color': 0, 'x': 0.166806, 'y': 0.022450, 'z': 0.068755, 'P1': 0.166806, 'P2': 0.022450, 'P3': 0.068755, 'P4': 0.002522, 'P5': 0.007894, 'P6': 0.055436, 'P7': -0.026424, 'P8': 0.001638, 'P9': -0.001140, 'P10': -0.065302 };
+g_spherePositions['Aus.K9.50'] = { 'name': 'Aus.K9.50', 'color': 0, 'x': 0.191623, 'y': 0.058909, 'z': -0.066033, 'P1': 0.191623, 'P2': 0.058909, 'P3': -0.066033, 'P4': 0.065196, 'P5': -0.021359, 'P6': 0.073879, 'P7': 0.053041, 'P8': -0.048823, 'P9': 0.029724, 'P10': -0.016360 };
+g_spherePositions['Aus.K9.52'] = { 'name': 'Aus.K9.52', 'color': 0, 'x': 0.204367, 'y': 0.083084, 'z': -0.078442, 'P1': 0.204367, 'P2': 0.083084, 'P3': -0.078442, 'P4': 0.035327, 'P5': 0.051502, 'P6': 0.017191, 'P7': 0.051779, 'P8': 0.000182, 'P9': -0.012503, 'P10': -0.043472 };
+g_spherePositions['Aus.K9.53'] = { 'name': 'Aus.K9.53', 'color': 0, 'x': 0.046706, 'y': 0.139311, 'z': -0.060264, 'P1': 0.046706, 'P2': 0.139311, 'P3': -0.060264, 'P4': 0.142924, 'P5': 0.081423, 'P6': -0.087307, 'P7': -0.069354, 'P8': -0.007976, 'P9': 0.065963, 'P10': 0.029894 };
+g_spherePositions['Aus.K9.56'] = { 'name': 'Aus.K9.56', 'color': 0, 'x': 0.162117, 'y': 0.061751, 'z': -0.092441, 'P1': 0.162117, 'P2': 0.061751, 'P3': -0.092441, 'P4': 0.014448, 'P5': 0.040289, 'P6': 0.022363, 'P7': 0.060085, 'P8': 0.016276, 'P9': 0.017229, 'P10': 0.004828 };
+g_spherePositions['Aus.K9.58'] = { 'name': 'Aus.K9.58', 'color': 0, 'x': 0.146113, 'y': 0.029770, 'z': -0.065162, 'P1': 0.146113, 'P2': 0.029770, 'P3': -0.065162, 'P4': 0.051764, 'P5': 0.019351, 'P6': 0.038166, 'P7': 0.055351, 'P8': 0.020252, 'P9': -0.037094, 'P10': 0.025614 };
+g_spherePositions['Aus.K9.60'] = { 'name': 'Aus.K9.60', 'color': 0, 'x': 0.143480, 'y': 0.035821, 'z': 0.050028, 'P1': 0.143480, 'P2': 0.035821, 'P3': 0.050028, 'P4': -0.028985, 'P5': 0.031108, 'P6': 0.024112, 'P7': -0.004917, 'P8': 0.028399, 'P9': 0.033739, 'P10': -0.035644 };
+g_spherePositions['Aus.K9.61'] = { 'name': 'Aus.K9.61', 'color': 0, 'x': -0.049022, 'y': -0.217990, 'z': -0.053201, 'P1': -0.049022, 'P2': -0.217990, 'P3': -0.053201, 'P4': -0.092997, 'P5': 0.079850, 'P6': -0.005887, 'P7': 0.023194, 'P8': -0.088437, 'P9': 0.073081, 'P10': 0.003691 };
+g_spherePositions['Aus.K9.63'] = { 'name': 'Aus.K9.63', 'color': 0, 'x': 0.086954, 'y': -0.016292, 'z': 0.143619, 'P1': 0.086954, 'P2': -0.016292, 'P3': 0.143619, 'P4': -0.009990, 'P5': -0.055907, 'P6': 0.024005, 'P7': 0.016542, 'P8': 0.000124, 'P9': -0.006806, 'P10': -0.013547 };
+g_spherePositions['Aus.K9.65'] = { 'name': 'Aus.K9.65', 'color': 0, 'x': -0.052586, 'y': -0.153910, 'z': 0.104338, 'P1': -0.052586, 'P2': -0.153910, 'P3': 0.104338, 'P4': 0.071167, 'P5': -0.053502, 'P6': 0.080507, 'P7': 0.017519, 'P8': 0.030787, 'P9': -0.036008, 'P10': 0.028866 };
+g_spherePositions['Aus.K9.66'] = { 'name': 'Aus.K9.66', 'color': 0, 'x': -0.093857, 'y': -0.056917, 'z': 0.132356, 'P1': -0.093857, 'P2': -0.056917, 'P3': 0.132356, 'P4': 0.085257, 'P5': 0.001216, 'P6': 0.082223, 'P7': -0.020077, 'P8': 0.010461, 'P9': -0.018417, 'P10': 0.016668 };
+g_spherePositions['Aus.K9.68'] = { 'name': 'Aus.K9.68', 'color': 0, 'x': 0.123127, 'y': 0.028179, 'z': -0.046039, 'P1': 0.123127, 'P2': 0.028179, 'P3': -0.046039, 'P4': 0.004557, 'P5': 0.026504, 'P6': 0.062281, 'P7': 0.039464, 'P8': 0.020459, 'P9': -0.064645, 'P10': 0.022621 };
+g_spherePositions['Aus.K9.69'] = { 'name': 'Aus.K9.69', 'color': 0, 'x': -0.227703, 'y': 0.057385, 'z': -0.122351, 'P1': -0.227703, 'P2': 0.057385, 'P3': -0.122351, 'P4': 0.087698, 'P5': -0.037351, 'P6': 0.000214, 'P7': -0.139394, 'P8': 0.018785, 'P9': -0.101294, 'P10': -0.146661 };
+g_spherePositions['Aus.K9.70'] = { 'name': 'Aus.K9.70', 'color': 0, 'x': 0.055075, 'y': -0.127956, 'z': -0.001520, 'P1': 0.055075, 'P2': -0.127956, 'P3': -0.001520, 'P4': -0.039995, 'P5': -0.080531, 'P6': -0.074345, 'P7': 0.041205, 'P8': -0.005955, 'P9': -0.080083, 'P10': 0.016507 };
+g_spherePositions['Aus.K9.71'] = { 'name': 'Aus.K9.71', 'color': 0, 'x': -0.030280, 'y': 0.128873, 'z': -0.026541, 'P1': -0.030280, 'P2': 0.128873, 'P3': -0.026541, 'P4': -0.057151, 'P5': 0.054050, 'P6': 0.024417, 'P7': -0.045235, 'P8': -0.031680, 'P9': -0.083706, 'P10': 0.015174 };
+g_spherePositions['Aus.K9.72'] = { 'name': 'Aus.K9.72', 'color': 0, 'x': 0.083553, 'y': -0.063942, 'z': 0.041581, 'P1': 0.083553, 'P2': -0.063942, 'P3': 0.041581, 'P4': -0.070852, 'P5': -0.041883, 'P6': -0.029461, 'P7': -0.010372, 'P8': 0.047304, 'P9': -0.054776, 'P10': -0.043372 };
+g_spherePositions['Aus.K9.73'] = { 'name': 'Aus.K9.73', 'color': 0, 'x': 0.197603, 'y': 0.045851, 'z': -0.061318, 'P1': 0.197603, 'P2': 0.045851, 'P3': -0.061318, 'P4': 0.022953, 'P5': 0.010646, 'P6': 0.029866, 'P7': 0.024527, 'P8': -0.038526, 'P9': -0.013033, 'P10': -0.003138 };
+g_spherePositions['Aus.K9.74'] = { 'name': 'Aus.K9.74', 'color': 0, 'x': 0.089987, 'y': 0.023075, 'z': 0.122242, 'P1': 0.089987, 'P2': 0.023075, 'P3': 0.122242, 'P4': -0.041449, 'P5': 0.026540, 'P6': 0.052068, 'P7': -0.042148, 'P8': 0.007404, 'P9': -0.019640, 'P10': -0.026180 };
+g_spherePositions['Aus.K9.75'] = { 'name': 'Aus.K9.75', 'color': 0, 'x': -0.127280, 'y': -0.095419, 'z': 0.077542, 'P1': -0.127280, 'P2': -0.095419, 'P3': 0.077542, 'P4': 0.082336, 'P5': -0.058082, 'P6': 0.076208, 'P7': 0.003072, 'P8': 0.085248, 'P9': -0.045200, 'P10': 0.004569 };
+g_spherePositions['Aus.K9.76'] = { 'name': 'Aus.K9.76', 'color': 0, 'x': 0.068612, 'y': 0.096095, 'z': 0.023418, 'P1': 0.068612, 'P2': 0.096095, 'P3': 0.023418, 'P4': -0.068670, 'P5': 0.053685, 'P6': 0.037472, 'P7': -0.059464, 'P8': 0.029262, 'P9': -0.027076, 'P10': 0.008992 };
+g_spherePositions['Aus.K9.77'] = { 'name': 'Aus.K9.77', 'color': 0, 'x': -0.021536, 'y': -0.111510, 'z': 0.096005, 'P1': -0.021536, 'P2': -0.111510, 'P3': 0.096005, 'P4': 0.056716, 'P5': -0.039991, 'P6': 0.002338, 'P7': -0.037469, 'P8': 0.016081, 'P9': -0.022511, 'P10': 0.036705 };
+g_spherePositions['Aus.K9.78'] = { 'name': 'Aus.K9.78', 'color': 0, 'x': 0.031668, 'y': -0.127778, 'z': -0.047471, 'P1': 0.031668, 'P2': -0.127778, 'P3': -0.047471, 'P4': -0.074466, 'P5': 0.043422, 'P6': -0.132685, 'P7': -0.061202, 'P8': -0.036274, 'P9': -0.071208, 'P10': -0.024447 };
+g_spherePositions['Aus.K9.79'] = { 'name': 'Aus.K9.79', 'color': 0, 'x': 0.104955, 'y': 0.049058, 'z': 0.059929, 'P1': 0.104955, 'P2': 0.049058, 'P3': 0.059929, 'P4': -0.027864, 'P5': 0.026085, 'P6': 0.049473, 'P7': -0.026053, 'P8': 0.009734, 'P9': -0.050730, 'P10': 0.028140 };
+g_spherePositions['Aus.K9.80'] = { 'name': 'Aus.K9.80', 'color': 0, 'x': -0.131570, 'y': 0.082575, 'z': 0.053800, 'P1': -0.131570, 'P2': 0.082575, 'P3': 0.053800, 'P4': -0.047000, 'P5': -0.016171, 'P6': -0.002264, 'P7': -0.009831, 'P8': -0.092858, 'P9': -0.056681, 'P10': 0.042541 };
+g_spherePositions['Aus.K9.82'] = { 'name': 'Aus.K9.82', 'color': 0, 'x': 0.002903, 'y': -0.140971, 'z': 0.034934, 'P1': 0.002903, 'P2': -0.140971, 'P3': 0.034934, 'P4': -0.061142, 'P5': -0.086277, 'P6': -0.048274, 'P7': 0.017447, 'P8': 0.050094, 'P9': -0.031134, 'P10': -0.036615 };
+g_spherePositions['Aus.K9.83'] = { 'name': 'Aus.K9.83', 'color': 0, 'x': -0.144153, 'y': 0.063547, 'z': -0.012238, 'P1': -0.144153, 'P2': 0.063547, 'P3': -0.012238, 'P4': -0.063313, 'P5': -0.057939, 'P6': 0.050544, 'P7': -0.000681, 'P8': -0.076603, 'P9': -0.027136, 'P10': 0.033629 };
+g_spherePositions['Aus.K9.85'] = { 'name': 'Aus.K9.85', 'color': 0, 'x': -0.004479, 'y': -0.140718, 'z': -0.039234, 'P1': -0.004479, 'P2': -0.140718, 'P3': -0.039234, 'P4': -0.092815, 'P5': 0.103385, 'P6': 0.003611, 'P7': -0.015451, 'P8': -0.015487, 'P9': -0.010316, 'P10': 0.017322 };
+g_spherePositions['Aus.K9.87'] = { 'name': 'Aus.K9.87', 'color': 0, 'x': 0.039699, 'y': -0.122484, 'z': -0.078216, 'P1': 0.039699, 'P2': -0.122484, 'P3': -0.078216, 'P4': -0.050726, 'P5': 0.056641, 'P6': -0.058170, 'P7': -0.026030, 'P8': -0.026355, 'P9': -0.043425, 'P10': 0.016727 };
+g_spherePositions['Aus.K9.88'] = { 'name': 'Aus.K9.88', 'color': 0, 'x': -0.000841, 'y': -0.057290, 'z': 0.123162, 'P1': -0.000841, 'P2': -0.057290, 'P3': 0.123162, 'P4': -0.061417, 'P5': 0.024249, 'P6': -0.005606, 'P7': 0.014059, 'P8': 0.050606, 'P9': -0.048747, 'P10': 0.031003 };
+g_spherePositions['Aus.K9.89'] = { 'name': 'Aus.K9.89', 'color': 0, 'x': 0.086752, 'y': 0.024754, 'z': 0.005357, 'P1': 0.086752, 'P2': 0.024754, 'P3': 0.005357, 'P4': -0.010700, 'P5': 0.007242, 'P6': 0.055612, 'P7': 0.000467, 'P8': 0.016145, 'P9': -0.036579, 'P10': 0.052516 };
+g_spherePositions['Aus.K9.90'] = { 'name': 'Aus.K9.90', 'color': 0, 'x': -0.239051, 'y': 0.105930, 'z': -0.077798, 'P1': -0.239051, 'P2': 0.105930, 'P3': -0.077798, 'P4': 0.021587, 'P5': 0.024953, 'P6': -0.013784, 'P7': -0.045661, 'P8': -0.011186, 'P9': -0.138585, 'P10': -0.061927 };
+g_spherePositions['Aus.K9.92'] = { 'name': 'Aus.K9.92', 'color': 0, 'x': -0.001808, 'y': -0.188860, 'z': -0.080208, 'P1': -0.001808, 'P2': -0.188860, 'P3': -0.080208, 'P4': -0.143488, 'P5': 0.081199, 'P6': 0.007928, 'P7': -0.045683, 'P8': -0.057667, 'P9': 0.019962, 'P10': -0.033858 };
+g_spherePositions['Aus.K9.93'] = { 'name': 'Aus.K9.93', 'color': 0, 'x': 0.097184, 'y': -0.036663, 'z': -0.042527, 'P1': 0.097184, 'P2': -0.036663, 'P3': -0.042527, 'P4': -0.016629, 'P5': -0.039688, 'P6': -0.016684, 'P7': -0.011809, 'P8': -0.005274, 'P9': -0.007323, 'P10': 0.008352 };
+g_spherePositions['Aus.K9.94'] = { 'name': 'Aus.K9.94', 'color': 0, 'x': 0.043715, 'y': -0.126525, 'z': -0.023422, 'P1': 0.043715, 'P2': -0.126525, 'P3': -0.023422, 'P4': 0.006417, 'P5': -0.127688, 'P6': -0.026453, 'P7': -0.029694, 'P8': -0.055310, 'P9': 0.026423, 'P10': 0.001551 };
+g_spherePositions['Aus.K9.97'] = { 'name': 'Aus.K9.97', 'color': 0, 'x': 0.163728, 'y': 0.034316, 'z': -0.086745, 'P1': 0.163728, 'P2': 0.034316, 'P3': -0.086745, 'P4': 0.010294, 'P5': 0.025291, 'P6': 0.030036, 'P7': 0.009047, 'P8': -0.017584, 'P9': -0.032336, 'P10': -0.014924 };
+g_spherePositions['Aus.K9.99'] = { 'name': 'Aus.K9.99', 'color': 0, 'x': 0.013372, 'y': -0.154167, 'z': -0.114778, 'P1': 0.013372, 'P2': -0.154167, 'P3': -0.114778, 'P4': -0.089152, 'P5': 0.094118, 'P6': -0.047382, 'P7': -0.042352, 'P8': -0.070090, 'P9': 0.019006, 'P10': 0.000959 };
+g_spherePositions['Aus.K9.100'] = { 'name': 'Aus.K9.100', 'color': 0, 'x': -0.135392, 'y': -0.190196, 'z': -0.033362, 'P1': -0.135392, 'P2': -0.190196, 'P3': -0.033362, 'P4': -0.020038, 'P5': 0.086291, 'P6': 0.039085, 'P7': -0.037795, 'P8': -0.010020, 'P9': 0.012877, 'P10': 0.025349 };
+g_spherePositions['Aus.K9.101'] = { 'name': 'Aus.K9.101', 'color': 0, 'x': -0.230693, 'y': 0.076451, 'z': -0.119766, 'P1': -0.230693, 'P2': 0.076451, 'P3': -0.119766, 'P4': 0.050094, 'P5': 0.010225, 'P6': 0.001448, 'P7': -0.102980, 'P8': 0.034230, 'P9': -0.108926, 'P10': -0.097360 };
+g_spherePositions['Aus.K9.104'] = { 'name': 'Aus.K9.104', 'color': 0, 'x': 0.136751, 'y': 0.039714, 'z': -0.081923, 'P1': 0.136751, 'P2': 0.039714, 'P3': -0.081923, 'P4': -0.007574, 'P5': 0.002495, 'P6': 0.031525, 'P7': 0.029894, 'P8': 0.043621, 'P9': -0.011228, 'P10': 0.013746 };
+g_spherePositions['Aus.K9.105'] = { 'name': 'Aus.K9.105', 'color': 0, 'x': -0.226650, 'y': 0.049979, 'z': -0.021455, 'P1': -0.226650, 'P2': 0.049979, 'P3': -0.021455, 'P4': -0.012557, 'P5': -0.027384, 'P6': -0.021414, 'P7': 0.024927, 'P8': 0.006762, 'P9': 0.039395, 'P10': -0.022400 };
+g_spherePositions['Aus.K9.106'] = { 'name': 'Aus.K9.106', 'color': 0, 'x': 0.101060, 'y': 0.029763, 'z': 0.072289, 'P1': 0.101060, 'P2': 0.029763, 'P3': 0.072289, 'P4': -0.028388, 'P5': -0.032409, 'P6': 0.083750, 'P7': -0.101849, 'P8': 0.045264, 'P9': -0.001802, 'P10': -0.059694 };
+g_spherePositions['Aus.K9.107'] = { 'name': 'Aus.K9.107', 'color': 0, 'x': -0.011081, 'y': 0.104981, 'z': 0.038142, 'P1': -0.011081, 'P2': 0.104981, 'P3': 0.038142, 'P4': -0.120682, 'P5': 0.029471, 'P6': -0.049184, 'P7': 0.045931, 'P8': 0.068791, 'P9': 0.000885, 'P10': 0.005460 };
+g_spherePositions['Aus.K9.109'] = { 'name': 'Aus.K9.109', 'color': 0, 'x': -0.125020, 'y': -0.078133, 'z': 0.000307, 'P1': -0.125020, 'P2': -0.078133, 'P3': 0.000307, 'P4': 0.097341, 'P5': -0.042312, 'P6': 0.035150, 'P7': -0.034418, 'P8': 0.088274, 'P9': -0.064021, 'P10': 0.042860 };
+g_spherePositions['Aus.K9.110'] = { 'name': 'Aus.K9.110', 'color': 0, 'x': 0.049665, 'y': 0.130316, 'z': -0.039884, 'P1': 0.049665, 'P2': 0.130316, 'P3': -0.039884, 'P4': -0.061995, 'P5': 0.053009, 'P6': 0.059340, 'P7': -0.020126, 'P8': 0.021916, 'P9': -0.016918, 'P10': 0.062020 };
+g_spherePositions['Aus.K9.113'] = { 'name': 'Aus.K9.113', 'color': 0, 'x': 0.126296, 'y': 0.003724, 'z': -0.061280, 'P1': 0.126296, 'P2': 0.003724, 'P3': -0.061280, 'P4': 0.011389, 'P5': -0.016329, 'P6': -0.037992, 'P7': 0.049432, 'P8': 0.029189, 'P9': -0.006968, 'P10': 0.030092 };
+g_spherePositions['Aus.K9.114'] = { 'name': 'Aus.K9.114', 'color': 0, 'x': -0.136042, 'y': 0.091313, 'z': 0.038314, 'P1': -0.136042, 'P2': 0.091313, 'P3': 0.038314, 'P4': -0.097894, 'P5': -0.031523, 'P6': -0.003592, 'P7': 0.006767, 'P8': 0.027015, 'P9': 0.004077, 'P10': 0.050325 };
+g_spherePositions['Aus.K9.115'] = { 'name': 'Aus.K9.115', 'color': 0, 'x': -0.044740, 'y': -0.144285, 'z': 0.081728, 'P1': -0.044740, 'P2': -0.144285, 'P3': 0.081728, 'P4': 0.003903, 'P5': 0.058800, 'P6': 0.048625, 'P7': -0.021513, 'P8': 0.000065, 'P9': -0.051500, 'P10': 0.014674 };
+g_spherePositions['Aus.K9.116'] = { 'name': 'Aus.K9.116', 'color': 0, 'x': -0.060703, 'y': 0.108715, 'z': -0.014946, 'P1': -0.060703, 'P2': 0.108715, 'P3': -0.014946, 'P4': -0.119415, 'P5': 0.018899, 'P6': -0.028120, 'P7': -0.009804, 'P8': 0.121651, 'P9': 0.057487, 'P10': 0.003465 };
+g_spherePositions['Aus.K9.117'] = { 'name': 'Aus.K9.117', 'color': 0, 'x': -0.082066, 'y': 0.137985, 'z': 0.018969, 'P1': -0.082066, 'P2': 0.137985, 'P3': 0.018969, 'P4': -0.122326, 'P5': -0.007537, 'P6': 0.015834, 'P7': 0.000051, 'P8': 0.052322, 'P9': -0.008798, 'P10': 0.012667 };
+g_spherePositions['Aus.K9.118'] = { 'name': 'Aus.K9.118', 'color': 0, 'x': 0.155295, 'y': -0.012175, 'z': 0.042522, 'P1': 0.155295, 'P2': -0.012175, 'P3': 0.042522, 'P4': -0.019547, 'P5': -0.039661, 'P6': 0.049980, 'P7': -0.023653, 'P8': 0.033513, 'P9': -0.010291, 'P10': -0.032120 };
+g_spherePositions['Aus.K9.119'] = { 'name': 'Aus.K9.119', 'color': 0, 'x': -0.065035, 'y': -0.144450, 'z': 0.017333, 'P1': -0.065035, 'P2': -0.144450, 'P3': 0.017333, 'P4': -0.017669, 'P5': -0.046885, 'P6': -0.037585, 'P7': 0.006585, 'P8': 0.046270, 'P9': -0.101682, 'P10': 0.022664 };
+g_spherePositions['Aus.K9.120'] = { 'name': 'Aus.K9.120', 'color': 0, 'x': 0.090755, 'y': -0.000726, 'z': 0.063248, 'P1': 0.090755, 'P2': -0.000726, 'P3': 0.063248, 'P4': -0.064065, 'P5': 0.073539, 'P6': -0.002114, 'P7': -0.053116, 'P8': -0.005010, 'P9': 0.003895, 'P10': -0.071233 };
+g_spherePositions['Aus.K9.121'] = { 'name': 'Aus.K9.121', 'color': 0, 'x': 0.111864, 'y': 0.007848, 'z': 0.080794, 'P1': 0.111864, 'P2': 0.007848, 'P3': 0.080794, 'P4': -0.031265, 'P5': -0.041466, 'P6': 0.066644, 'P7': -0.053233, 'P8': 0.003132, 'P9': 0.031817, 'P10': -0.026883 };
+g_spherePositions['Aus.K9.122'] = { 'name': 'Aus.K9.122', 'color': 0, 'x': 0.143831, 'y': 0.021505, 'z': -0.017592, 'P1': 0.143831, 'P2': 0.021505, 'P3': -0.017592, 'P4': -0.049745, 'P5': 0.036729, 'P6': 0.072862, 'P7': -0.054454, 'P8': 0.050249, 'P9': -0.005529, 'P10': -0.023788 };
+g_spherePositions['Aus.K9.123'] = { 'name': 'Aus.K9.123', 'color': 0, 'x': 0.013386, 'y': -0.095190, 'z': -0.048088, 'P1': 0.013386, 'P2': -0.095190, 'P3': -0.048088, 'P4': 0.016637, 'P5': -0.066057, 'P6': -0.134236, 'P7': -0.120676, 'P8': -0.010716, 'P9': -0.041269, 'P10': -0.013447 };
+g_spherePositions['Aus.K9.124'] = { 'name': 'Aus.K9.124', 'color': 0, 'x': 0.175807, 'y': 0.009193, 'z': -0.042215, 'P1': 0.175807, 'P2': 0.009193, 'P3': -0.042215, 'P4': -0.009990, 'P5': -0.011658, 'P6': -0.014239, 'P7': -0.017909, 'P8': 0.021754, 'P9': -0.007733, 'P10': -0.004525 };
+g_spherePositions['Aus.K9.125'] = { 'name': 'Aus.K9.125', 'color': 0, 'x': 0.171660, 'y': 0.059250, 'z': -0.068545, 'P1': 0.171660, 'P2': 0.059250, 'P3': -0.068545, 'P4': -0.029149, 'P5': 0.038580, 'P6': 0.006993, 'P7': 0.020421, 'P8': 0.001320, 'P9': -0.019833, 'P10': 0.000740 };
+g_spherePositions['Aus.K9.126'] = { 'name': 'Aus.K9.126', 'color': 0, 'x': 0.172026, 'y': 0.053394, 'z': -0.087181, 'P1': 0.172026, 'P2': 0.053394, 'P3': -0.087181, 'P4': 0.016938, 'P5': 0.019231, 'P6': 0.002878, 'P7': 0.049692, 'P8': 0.001707, 'P9': -0.028190, 'P10': 0.028977 };
+g_spherePositions['Aus.K9.128'] = { 'name': 'Aus.K9.128', 'color': 0, 'x': -0.061107, 'y': 0.140942, 'z': 0.046151, 'P1': -0.061107, 'P2': 0.140942, 'P3': 0.046151, 'P4': -0.119938, 'P5': -0.009077, 'P6': 0.000433, 'P7': 0.016683, 'P8': 0.009570, 'P9': 0.012744, 'P10': 0.025960 };
+g_spherePositions['Aus.K9.129'] = { 'name': 'Aus.K9.129', 'color': 0, 'x': 0.022526, 'y': -0.140261, 'z': 0.001851, 'P1': 0.022526, 'P2': -0.140261, 'P3': 0.001851, 'P4': 0.005552, 'P5': -0.086888, 'P6': -0.146073, 'P7': -0.112925, 'P8': -0.039267, 'P9': -0.031918, 'P10': -0.026658 };
+g_spherePositions['Aus.K9.131'] = { 'name': 'Aus.K9.131', 'color': 0, 'x': -0.017365, 'y': 0.078087, 'z': 0.099373, 'P1': -0.017365, 'P2': 0.078087, 'P3': 0.099373, 'P4': 0.028742, 'P5': 0.020125, 'P6': -0.031621, 'P7': -0.127599, 'P8': -0.087776, 'P9': 0.003402, 'P10': -0.015178 };
+g_spherePositions['Aus.K9.132'] = { 'name': 'Aus.K9.132', 'color': 0, 'x': 0.014846, 'y': 0.122401, 'z': 0.056600, 'P1': 0.014846, 'P2': 0.122401, 'P3': 0.056600, 'P4': -0.035415, 'P5': 0.034231, 'P6': -0.057400, 'P7': -0.077152, 'P8': -0.030060, 'P9': 0.018865, 'P10': 0.037109 };
+g_spherePositions['Aus.K9.133'] = { 'name': 'Aus.K9.133', 'color': 0, 'x': -0.114056, 'y': 0.112381, 'z': -0.010718, 'P1': -0.114056, 'P2': 0.112381, 'P3': -0.010718, 'P4': -0.057875, 'P5': -0.013650, 'P6': 0.038777, 'P7': 0.002749, 'P8': -0.079268, 'P9': -0.079059, 'P10': 0.078845 };
+g_spherePositions['Aus.K9.134'] = { 'name': 'Aus.K9.134', 'color': 0, 'x': 0.056287, 'y': 0.106744, 'z': -0.002358, 'P1': 0.056287, 'P2': 0.106744, 'P3': -0.002358, 'P4': 0.030527, 'P5': 0.030339, 'P6': -0.068595, 'P7': -0.145311, 'P8': -0.049214, 'P9': 0.043255, 'P10': 0.024144 };
+g_spherePositions['Aus.K9.135'] = { 'name': 'Aus.K9.135', 'color': 0, 'x': 0.107016, 'y': -0.116025, 'z': -0.032333, 'P1': 0.107016, 'P2': -0.116025, 'P3': -0.032333, 'P4': -0.015527, 'P5': -0.095541, 'P6': -0.056806, 'P7': 0.020401, 'P8': -0.046274, 'P9': -0.024405, 'P10': 0.014439 };
+g_spherePositions['Aus.K9.138'] = { 'name': 'Aus.K9.138', 'color': 0, 'x': 0.161495, 'y': -0.049175, 'z': -0.050358, 'P1': 0.161495, 'P2': -0.049175, 'P3': -0.050358, 'P4': -0.047508, 'P5': -0.065994, 'P6': -0.057217, 'P7': 0.005774, 'P8': -0.035801, 'P9': -0.006785, 'P10': -0.036549 };
+g_spherePositions['Aus.K9.139'] = { 'name': 'Aus.K9.139', 'color': 0, 'x': 0.113582, 'y': -0.091656, 'z': 0.005977, 'P1': 0.113582, 'P2': -0.091656, 'P3': 0.005977, 'P4': 0.015894, 'P5': -0.100094, 'P6': -0.073274, 'P7': 0.039368, 'P8': -0.018671, 'P9': 0.008693, 'P10': 0.021654 };
+g_spherePositions['Aus.K9.140'] = { 'name': 'Aus.K9.140', 'color': 0, 'x': 0.070440, 'y': -0.100859, 'z': -0.009775, 'P1': 0.070440, 'P2': -0.100859, 'P3': -0.009775, 'P4': -0.020841, 'P5': -0.122208, 'P6': -0.066478, 'P7': 0.051585, 'P8': 0.019253, 'P9': 0.038618, 'P10': 0.008153 };
+g_spherePositions['Aus.K9.141'] = { 'name': 'Aus.K9.141', 'color': 0, 'x': -0.233877, 'y': 0.017840, 'z': -0.065877, 'P1': -0.233877, 'P2': 0.017840, 'P3': -0.065877, 'P4': -0.026511, 'P5': -0.062666, 'P6': 0.003989, 'P7': 0.071050, 'P8': 0.131133, 'P9': 0.109830, 'P10': -0.115869 };
+g_spherePositions['Aus.K9.143'] = { 'name': 'Aus.K9.143', 'color': 0, 'x': 0.133442, 'y': 0.051978, 'z': 0.012432, 'P1': 0.133442, 'P2': 0.051978, 'P3': 0.012432, 'P4': -0.033935, 'P5': -0.012991, 'P6': 0.058363, 'P7': -0.093927, 'P8': 0.038768, 'P9': 0.027167, 'P10': -0.036534 };
+g_spherePositions['Aus.K9.145'] = { 'name': 'Aus.K9.145', 'color': 0, 'x': 0.073642, 'y': -0.158142, 'z': -0.045247, 'P1': 0.073642, 'P2': -0.158142, 'P3': -0.045247, 'P4': -0.023476, 'P5': -0.159435, 'P6': -0.093935, 'P7': -0.003177, 'P8': -0.027396, 'P9': 0.021369, 'P10': -0.024610 };
+g_spherePositions['Aus.K9.147'] = { 'name': 'Aus.K9.147', 'color': 0, 'x': 0.147907, 'y': 0.016764, 'z': 0.024717, 'P1': 0.147907, 'P2': 0.016764, 'P3': 0.024717, 'P4': -0.007418, 'P5': -0.021891, 'P6': 0.066355, 'P7': -0.036806, 'P8': 0.032320, 'P9': 0.034965, 'P10': -0.030121 };
+g_spherePositions['Aus.K9.148'] = { 'name': 'Aus.K9.148', 'color': 0, 'x': -0.121353, 'y': -0.182681, 'z': 0.013611, 'P1': -0.121353, 'P2': -0.182681, 'P3': 0.013611, 'P4': 0.060837, 'P5': 0.068235, 'P6': 0.102982, 'P7': 0.016460, 'P8': 0.066435, 'P9': 0.040362, 'P10': 0.063022 };
+g_spherePositions['Aus.K9.149'] = { 'name': 'Aus.K9.149', 'color': 0, 'x': -0.186909, 'y': -0.095750, 'z': -0.081738, 'P1': -0.186909, 'P2': -0.095750, 'P3': -0.081738, 'P4': 0.001476, 'P5': 0.170146, 'P6': 0.074904, 'P7': -0.010503, 'P8': -0.012351, 'P9': -0.002643, 'P10': 0.000879 };
+g_spherePositions['Aus.K9.150'] = { 'name': 'Aus.K9.150', 'color': 0, 'x': 0.134716, 'y': 0.009958, 'z': -0.043817, 'P1': 0.134716, 'P2': 0.009958, 'P3': -0.043817, 'P4': -0.030441, 'P5': -0.016707, 'P6': 0.050646, 'P7': -0.009409, 'P8': 0.014558, 'P9': 0.007840, 'P10': -0.000633 };
+g_spherePositions['Aus.K9.151'] = { 'name': 'Aus.K9.151', 'color': 0, 'x': -0.235302, 'y': 0.078695, 'z': -0.158039, 'P1': -0.235302, 'P2': 0.078695, 'P3': -0.158039, 'P4': 0.007919, 'P5': -0.087900, 'P6': 0.086014, 'P7': 0.002004, 'P8': -0.065779, 'P9': -0.054831, 'P10': -0.017830 };
+g_spherePositions['Aus.K9.152'] = { 'name': 'Aus.K9.152', 'color': 0, 'x': 0.116188, 'y': 0.003853, 'z': -0.055708, 'P1': 0.116188, 'P2': 0.003853, 'P3': -0.055708, 'P4': 0.019268, 'P5': -0.044920, 'P6': 0.063281, 'P7': -0.010046, 'P8': 0.007514, 'P9': 0.034872, 'P10': 0.036006 };
+g_spherePositions['Aus.K9.153'] = { 'name': 'Aus.K9.153', 'color': 0, 'x': 0.053573, 'y': -0.062286, 'z': -0.082697, 'P1': 0.053573, 'P2': -0.062286, 'P3': -0.082697, 'P4': 0.084730, 'P5': -0.145996, 'P6': 0.015009, 'P7': -0.007164, 'P8': -0.025209, 'P9': 0.077058, 'P10': 0.005484 };
+g_spherePositions['Aus.K9.154'] = { 'name': 'Aus.K9.154', 'color': 0, 'x': -0.180403, 'y': 0.079785, 'z': 0.019041, 'P1': -0.180403, 'P2': 0.079785, 'P3': 0.019041, 'P4': -0.017109, 'P5': -0.055827, 'P6': 0.053234, 'P7': -0.030474, 'P8': -0.099056, 'P9': -0.025086, 'P10': 0.043827 };
+g_spherePositions['Aus.K9.155'] = { 'name': 'Aus.K9.155', 'color': 0, 'x': -0.015412, 'y': -0.051622, 'z': -0.034915, 'P1': -0.015412, 'P2': -0.051622, 'P3': -0.034915, 'P4': 0.135878, 'P5': -0.052169, 'P6': -0.036701, 'P7': -0.033535, 'P8': 0.068340, 'P9': 0.006310, 'P10': 0.043836 };
+g_spherePositions['Aus.K9.157'] = { 'name': 'Aus.K9.157', 'color': 0, 'x': -0.144548, 'y': -0.175523, 'z': -0.071739, 'P1': -0.144548, 'P2': -0.175523, 'P3': -0.071739, 'P4': 0.008558, 'P5': -0.028777, 'P6': 0.089878, 'P7': -0.019816, 'P8': 0.025456, 'P9': 0.043344, 'P10': 0.022740 };
+g_spherePositions['Aus.K9.158'] = { 'name': 'Aus.K9.158', 'color': 0, 'x': -0.039916, 'y': 0.116498, 'z': -0.088213, 'P1': -0.039916, 'P2': 0.116498, 'P3': -0.088213, 'P4': -0.021064, 'P5': -0.048034, 'P6': 0.066134, 'P7': -0.027448, 'P8': -0.097162, 'P9': -0.013540, 'P10': 0.057630 };
+g_spherePositions['Aus.K9.159'] = { 'name': 'Aus.K9.159', 'color': 0, 'x': -0.033625, 'y': 0.053652, 'z': 0.018449, 'P1': -0.033625, 'P2': 0.053652, 'P3': 0.018449, 'P4': -0.056070, 'P5': -0.079743, 'P6': 0.086495, 'P7': 0.013546, 'P8': 0.004437, 'P9': 0.055792, 'P10': -0.008452 };
+g_spherePositions['Aus.K9.160'] = { 'name': 'Aus.K9.160', 'color': 0, 'x': 0.019869, 'y': 0.098612, 'z': 0.011679, 'P1': 0.019869, 'P2': 0.098612, 'P3': 0.011679, 'P4': -0.101847, 'P5': 0.028207, 'P6': 0.014751, 'P7': -0.002389, 'P8': 0.076183, 'P9': 0.048816, 'P10': 0.016208 };
+g_spherePositions['Aus.K9.161'] = { 'name': 'Aus.K9.161', 'color': 0, 'x': 0.116377, 'y': 0.063859, 'z': 0.016177, 'P1': 0.116377, 'P2': 0.063859, 'P3': 0.016177, 'P4': -0.025624, 'P5': 0.015618, 'P6': 0.039878, 'P7': -0.056756, 'P8': 0.040874, 'P9': -0.001296, 'P10': -0.029039 };
+g_spherePositions['Aus.K9.163'] = { 'name': 'Aus.K9.163', 'color': 0, 'x': -0.241762, 'y': 0.017327, 'z': -0.053502, 'P1': -0.241762, 'P2': 0.017327, 'P3': -0.053502, 'P4': -0.041472, 'P5': -0.119796, 'P6': 0.098081, 'P7': 0.055768, 'P8': -0.068989, 'P9': 0.059993, 'P10': -0.032103 };
+g_spherePositions['Aus.K9.165'] = { 'name': 'Aus.K9.165', 'color': 0, 'x': -0.039402, 'y': 0.130698, 'z': 0.005195, 'P1': -0.039402, 'P2': 0.130698, 'P3': 0.005195, 'P4': -0.123646, 'P5': -0.008457, 'P6': 0.014620, 'P7': 0.044321, 'P8': 0.013152, 'P9': 0.016661, 'P10': 0.083997 };
+g_spherePositions['Aus.K9.166'] = { 'name': 'Aus.K9.166', 'color': 0, 'x': -0.048796, 'y': -0.126891, 'z': 0.121352, 'P1': -0.048796, 'P2': -0.126891, 'P3': 0.121352, 'P4': -0.003994, 'P5': -0.072991, 'P6': 0.004652, 'P7': 0.033797, 'P8': -0.017285, 'P9': 0.035232, 'P10': -0.029611 };
+g_spherePositions['Aus.K9.167'] = { 'name': 'Aus.K9.167', 'color': 0, 'x': -0.177483, 'y': 0.136420, 'z': -0.139258, 'P1': -0.177483, 'P2': 0.136420, 'P3': -0.139258, 'P4': -0.022579, 'P5': -0.080568, 'P6': 0.066279, 'P7': 0.005403, 'P8': -0.053489, 'P9': 0.001727, 'P10': -0.008132 };
+g_spherePositions['Aus.K9.169'] = { 'name': 'Aus.K9.169', 'color': 0, 'x': -0.039169, 'y': 0.095662, 'z': -0.060779, 'P1': -0.039169, 'P2': 0.095662, 'P3': -0.060779, 'P4': -0.029967, 'P5': -0.027667, 'P6': -0.050788, 'P7': -0.054631, 'P8': 0.097278, 'P9': 0.067187, 'P10': 0.030869 };
+g_spherePositions['Aus.K9.170'] = { 'name': 'Aus.K9.170', 'color': 0, 'x': 0.034730, 'y': 0.070896, 'z': 0.014360, 'P1': 0.034730, 'P2': 0.070896, 'P3': 0.014360, 'P4': -0.008033, 'P5': 0.015530, 'P6': -0.019116, 'P7': -0.109038, 'P8': -0.045094, 'P9': 0.044566, 'P10': 0.039164 };
+g_spherePositions['Aus.K9.171'] = { 'name': 'Aus.K9.171', 'color': 0, 'x': 0.055027, 'y': -0.057651, 'z': 0.113149, 'P1': 0.055027, 'P2': -0.057651, 'P3': 0.113149, 'P4': -0.045306, 'P5': -0.019339, 'P6': 0.016496, 'P7': -0.014386, 'P8': -0.032738, 'P9': 0.059011, 'P10': 0.003483 };
+g_spherePositions['Aus.K9.172'] = { 'name': 'Aus.K9.172', 'color': 0, 'x': 0.048160, 'y': -0.008578, 'z': -0.122972, 'P1': 0.048160, 'P2': -0.008578, 'P3': -0.122972, 'P4': 0.124161, 'P5': -0.094109, 'P6': 0.028339, 'P7': -0.005916, 'P8': -0.002716, 'P9': 0.045515, 'P10': 0.043255 };
+g_spherePositions['Aus.K9.173'] = { 'name': 'Aus.K9.173', 'color': 0, 'x': -0.266467, 'y': 0.023621, 'z': -0.021032, 'P1': -0.266467, 'P2': 0.023621, 'P3': -0.021032, 'P4': -0.015314, 'P5': -0.081758, 'P6': 0.016244, 'P7': 0.076584, 'P8': 0.028682, 'P9': 0.081257, 'P10': -0.061472 };
+g_spherePositions['Aus.K9.174'] = { 'name': 'Aus.K9.174', 'color': 0, 'x': -0.191336, 'y': 0.034605, 'z': -0.056215, 'P1': -0.191336, 'P2': 0.034605, 'P3': -0.056215, 'P4': -0.031757, 'P5': -0.038443, 'P6': -0.046590, 'P7': -0.010803, 'P8': 0.151595, 'P9': 0.037487, 'P10': -0.119493 };
+g_spherePositions['Aus.K9.176'] = { 'name': 'Aus.K9.176', 'color': 0, 'x': -0.158411, 'y': 0.068503, 'z': -0.025856, 'P1': -0.158411, 'P2': 0.068503, 'P3': -0.025856, 'P4': 0.062376, 'P5': -0.020197, 'P6': 0.019417, 'P7': -0.030277, 'P8': -0.000689, 'P9': -0.006907, 'P10': 0.087325 };
+g_spherePositions['Aus.K9.177'] = { 'name': 'Aus.K9.177', 'color': 0, 'x': -0.054912, 'y': 0.011987, 'z': 0.092072, 'P1': -0.054912, 'P2': 0.011987, 'P3': 0.092072, 'P4': 0.058737, 'P5': -0.037306, 'P6': -0.052141, 'P7': -0.088072, 'P8': -0.006726, 'P9': 0.072127, 'P10': 0.019946 };
+g_spherePositions['Aus.K9.178'] = { 'name': 'Aus.K9.178', 'color': 0, 'x': 0.058686, 'y': -0.033289, 'z': -0.047390, 'P1': 0.058686, 'P2': -0.033289, 'P3': -0.047390, 'P4': -0.029596, 'P5': -0.029555, 'P6': -0.065142, 'P7': 0.025937, 'P8': 0.023702, 'P9': -0.069156, 'P10': 0.099110 };
+g_spherePositions['Aus.K9.179'] = { 'name': 'Aus.K9.179', 'color': 0, 'x': -0.029537, 'y': -0.167981, 'z': -0.018612, 'P1': -0.029537, 'P2': -0.167981, 'P3': -0.018612, 'P4': 0.030097, 'P5': -0.080005, 'P6': -0.054617, 'P7': 0.045417, 'P8': 0.072641, 'P9': 0.024299, 'P10': 0.040897 };
+g_spherePositions['Aus.K9.180'] = { 'name': 'Aus.K9.180', 'color': 0, 'x': 0.142912, 'y': 0.060431, 'z': -0.054213, 'P1': 0.142912, 'P2': 0.060431, 'P3': -0.054213, 'P4': 0.010631, 'P5': 0.003889, 'P6': -0.002198, 'P7': -0.005758, 'P8': 0.022371, 'P9': 0.010052, 'P10': 0.032366 };
+g_spherePositions['Aus.K9.181'] = { 'name': 'Aus.K9.181', 'color': 0, 'x': -0.136599, 'y': -0.089479, 'z': -0.007735, 'P1': -0.136599, 'P2': -0.089479, 'P3': -0.007735, 'P4': 0.157300, 'P5': -0.017542, 'P6': 0.092499, 'P7': -0.016625, 'P8': 0.073232, 'P9': -0.020383, 'P10': 0.034928 };
+g_spherePositions['Aus.K9.183'] = { 'name': 'Aus.K9.183', 'color': 0, 'x': -0.047950, 'y': -0.182570, 'z': -0.006363, 'P1': -0.047950, 'P2': -0.182570, 'P3': -0.006363, 'P4': -0.086612, 'P5': 0.082920, 'P6': -0.014421, 'P7': 0.007098, 'P8': -0.005355, 'P9': 0.035978, 'P10': 0.050355 };
+g_spherePositions['Aus.K9.184'] = { 'name': 'Aus.K9.184', 'color': 0, 'x': 0.082897, 'y': -0.081648, 'z': 0.067049, 'P1': 0.082897, 'P2': -0.081648, 'P3': 0.067049, 'P4': -0.011805, 'P5': -0.075813, 'P6': 0.010426, 'P7': 0.005916, 'P8': 0.026930, 'P9': 0.022283, 'P10': 0.033408 };
+g_spherePositions['Aus.K9.186'] = { 'name': 'Aus.K9.186', 'color': 0, 'x': 0.077561, 'y': -0.045280, 'z': 0.064459, 'P1': 0.077561, 'P2': -0.045280, 'P3': 0.064459, 'P4': 0.021402, 'P5': -0.083186, 'P6': -0.006772, 'P7': -0.021675, 'P8': -0.035040, 'P9': 0.063208, 'P10': 0.044229 };
+g_spherePositions['Aus.K9.187'] = { 'name': 'Aus.K9.187', 'color': 0, 'x': 0.078954, 'y': 0.028357, 'z': -0.038321, 'P1': 0.078954, 'P2': 0.028357, 'P3': -0.038321, 'P4': 0.013119, 'P5': 0.054467, 'P6': 0.000799, 'P7': 0.003255, 'P8': 0.026148, 'P9': -0.048024, 'P10': 0.099626 };
+g_spherePositions['Aus.K9.188'] = { 'name': 'Aus.K9.188', 'color': 0, 'x': -0.154895, 'y': -0.229470, 'z': -0.053128, 'P1': -0.154895, 'P2': -0.229470, 'P3': -0.053128, 'P4': -0.014030, 'P5': 0.135623, 'P6': 0.080669, 'P7': 0.007737, 'P8': -0.008791, 'P9': 0.073505, 'P10': -0.013712 };
+g_spherePositions['Aus.K9.190'] = { 'name': 'Aus.K9.190', 'color': 0, 'x': 0.023545, 'y': -0.092099, 'z': 0.051761, 'P1': 0.023545, 'P2': -0.092099, 'P3': 0.051761, 'P4': 0.049538, 'P5': -0.105824, 'P6': -0.002435, 'P7': 0.012103, 'P8': 0.005428, 'P9': 0.069915, 'P10': 0.064228 };
+g_spherePositions['Aus.K9.191'] = { 'name': 'Aus.K9.191', 'color': 0, 'x': -0.035430, 'y': 0.130714, 'z': -0.077294, 'P1': -0.035430, 'P2': 0.130714, 'P3': -0.077294, 'P4': 0.011478, 'P5': 0.058758, 'P6': -0.068428, 'P7': -0.049390, 'P8': 0.068088, 'P9': 0.017808, 'P10': 0.103562 };
+g_spherePositions['Aus.K9.193'] = { 'name': 'Aus.K9.193', 'color': 0, 'x': -0.010213, 'y': -0.089261, 'z': -0.104445, 'P1': -0.010213, 'P2': -0.089261, 'P3': -0.104445, 'P4': 0.029374, 'P5': -0.022441, 'P6': -0.102810, 'P7': -0.127027, 'P8': -0.035886, 'P9': 0.036766, 'P10': 0.022335 };
+g_spherePositions['Aus.K9.194'] = { 'name': 'Aus.K9.194', 'color': 0, 'x': -0.106099, 'y': -0.178365, 'z': -0.029139, 'P1': -0.106099, 'P2': -0.178365, 'P3': -0.029139, 'P4': -0.012163, 'P5': 0.023815, 'P6': 0.076086, 'P7': -0.017942, 'P8': 0.059501, 'P9': 0.014804, 'P10': 0.063713 };
+g_spherePositions['Aus.K9.195'] = { 'name': 'Aus.K9.195', 'color': 0, 'x': -0.037182, 'y': -0.004334, 'z': 0.098657, 'P1': -0.037182, 'P2': -0.004334, 'P3': 0.098657, 'P4': 0.016347, 'P5': -0.041116, 'P6': -0.005647, 'P7': -0.073901, 'P8': -0.018123, 'P9': 0.081501, 'P10': 0.048365 };
+g_spherePositions['Aus.K9.196'] = { 'name': 'Aus.K9.196', 'color': 0, 'x': -0.092318, 'y': 0.123276, 'z': -0.024101, 'P1': -0.092318, 'P2': 0.123276, 'P3': -0.024101, 'P4': -0.082238, 'P5': -0.002152, 'P6': -0.006826, 'P7': 0.012776, 'P8': 0.011387, 'P9': 0.075233, 'P10': 0.087838 };
+g_spherePositions['Aus.K9.197'] = { 'name': 'Aus.K9.197', 'color': 0, 'x': -0.092814, 'y': 0.094126, 'z': -0.025523, 'P1': -0.092814, 'P2': 0.094126, 'P3': -0.025523, 'P4': 0.028125, 'P5': -0.008576, 'P6': -0.019182, 'P7': -0.029430, 'P8': 0.017257, 'P9': 0.023082, 'P10': 0.109312 };
+g_spherePositions['Aus.K9.198'] = { 'name': 'Aus.K9.198', 'color': 0, 'x': 0.036322, 'y': -0.023907, 'z': -0.037757, 'P1': 0.036322, 'P2': -0.023907, 'P3': -0.037757, 'P4': 0.106665, 'P5': -0.072269, 'P6': 0.040930, 'P7': -0.039952, 'P8': -0.026288, 'P9': 0.038769, 'P10': 0.033644 };
+g_spherePositions['Aus.K9.199'] = { 'name': 'Aus.K9.199', 'color': 0, 'x': 0.096270, 'y': -0.001855, 'z': -0.050028, 'P1': 0.096270, 'P2': -0.001855, 'P3': -0.050028, 'P4': 0.053324, 'P5': -0.000742, 'P6': 0.040594, 'P7': -0.002693, 'P8': -0.028214, 'P9': 0.026432, 'P10': 0.087041 };
+g_spherePositions['Aus.K9.200'] = { 'name': 'Aus.K9.200', 'color': 0, 'x': 0.077213, 'y': 0.088740, 'z': -0.039588, 'P1': 0.077213, 'P2': 0.088740, 'P3': -0.039588, 'P4': -0.029858, 'P5': 0.011708, 'P6': -0.009393, 'P7': 0.004950, 'P8': 0.058891, 'P9': 0.128699, 'P10': 0.037391 };
+g_spherePositions['Aus.K9.201'] = { 'name': 'Aus.K9.201', 'color': 0, 'x': 0.065152, 'y': -0.027399, 'z': 0.067271, 'P1': 0.065152, 'P2': -0.027399, 'P3': 0.067271, 'P4': 0.015558, 'P5': -0.008328, 'P6': 0.031813, 'P7': -0.016053, 'P8': 0.024571, 'P9': 0.016492, 'P10': 0.049411 };
+g_spherePositions['Aus.K9.202'] = { 'name': 'Aus.K9.202', 'color': 0, 'x': -0.148953, 'y': -0.209224, 'z': -0.027328, 'P1': -0.148953, 'P2': -0.209224, 'P3': -0.027328, 'P4': 0.016481, 'P5': 0.136740, 'P6': 0.058136, 'P7': 0.021606, 'P8': -0.008638, 'P9': 0.094857, 'P10': 0.003858 };
+g_spherePositions['Aus.K9.203'] = { 'name': 'Aus.K9.203', 'color': 0, 'x': 0.105812, 'y': 0.024524, 'z': 0.113650, 'P1': 0.105812, 'P2': 0.024524, 'P3': 0.113650, 'P4': 0.012250, 'P5': 0.063857, 'P6': -0.053581, 'P7': -0.022522, 'P8': -0.023833, 'P9': 0.004922, 'P10': -0.046348 };
+g_spherePositions['Aus.K9.204'] = { 'name': 'Aus.K9.204', 'color': 0, 'x': -0.073815, 'y': 0.108776, 'z': 0.055597, 'P1': -0.073815, 'P2': 0.108776, 'P3': 0.055597, 'P4': 0.136524, 'P5': 0.055424, 'P6': -0.120724, 'P7': -0.027148, 'P8': -0.038425, 'P9': 0.033012, 'P10': 0.022064 };
+g_spherePositions['Aus.K9.205'] = { 'name': 'Aus.K9.205', 'color': 0, 'x': -0.143861, 'y': -0.182344, 'z': 0.013733, 'P1': -0.143861, 'P2': -0.182344, 'P3': 0.013733, 'P4': -0.003451, 'P5': 0.159656, 'P6': -0.003305, 'P7': 0.046732, 'P8': 0.001010, 'P9': 0.000458, 'P10': -0.026420 };
+g_spherePositions['Aus.K9.206'] = { 'name': 'Aus.K9.206', 'color': 0, 'x': -0.184003, 'y': 0.098713, 'z': 0.125367, 'P1': -0.184003, 'P2': 0.098713, 'P3': 0.125367, 'P4': 0.055429, 'P5': 0.029885, 'P6': -0.094380, 'P7': 0.162244, 'P8': -0.086379, 'P9': 0.011645, 'P10': -0.003600 };
+g_spherePositions['Aus.K9.207'] = { 'name': 'Aus.K9.207', 'color': 0, 'x': -0.043866, 'y': 0.083504, 'z': -0.111397, 'P1': -0.043866, 'P2': 0.083504, 'P3': -0.111397, 'P4': -0.002670, 'P5': -0.044725, 'P6': 0.052730, 'P7': -0.052598, 'P8': 0.028431, 'P9': 0.066101, 'P10': -0.046184 };
+g_spherePositions['Aus.K9.208'] = { 'name': 'Aus.K9.208', 'color': 0, 'x': -0.217870, 'y': 0.119468, 'z': -0.025156, 'P1': -0.217870, 'P2': 0.119468, 'P3': -0.025156, 'P4': 0.025629, 'P5': 0.046289, 'P6': -0.136927, 'P7': 0.049026, 'P8': 0.082874, 'P9': 0.086593, 'P10': -0.136493 };
+g_spherePositions['Aus.K9.209'] = { 'name': 'Aus.K9.209', 'color': 0, 'x': -0.002468, 'y': -0.081022, 'z': 0.186332, 'P1': -0.002468, 'P2': -0.081022, 'P3': 0.186332, 'P4': 0.087128, 'P5': 0.050447, 'P6': -0.027926, 'P7': 0.046094, 'P8': 0.035212, 'P9': -0.075787, 'P10': 0.036472 };
+g_spherePositions['Aus.K9.210'] = { 'name': 'Aus.K9.210', 'color': 0, 'x': 0.168407, 'y': 0.071278, 'z': 0.095453, 'P1': 0.168407, 'P2': 0.071278, 'P3': 0.095453, 'P4': 0.057280, 'P5': 0.050949, 'P6': 0.054464, 'P7': 0.004971, 'P8': -0.002352, 'P9': 0.017677, 'P10': -0.062363 };
+g_spherePositions['Aus.K9.211'] = { 'name': 'Aus.K9.211', 'color': 0, 'x': -0.177132, 'y': -0.082869, 'z': 0.015315, 'P1': -0.177132, 'P2': -0.082869, 'P3': 0.015315, 'P4': 0.139027, 'P5': 0.144362, 'P6': -0.004794, 'P7': -0.019967, 'P8': 0.034473, 'P9': -0.046061, 'P10': -0.056127 };
+g_spherePositions['Aus.K9.215'] = { 'name': 'Aus.K9.215', 'color': 0, 'x': -0.252585, 'y': 0.092989, 'z': 0.068004, 'P1': -0.252585, 'P2': 0.092989, 'P3': 0.068004, 'P4': 0.017371, 'P5': -0.038810, 'P6': -0.047053, 'P7': 0.121829, 'P8': -0.072846, 'P9': 0.049849, 'P10': -0.086799 };
+g_spherePositions['Aus.K9.216'] = { 'name': 'Aus.K9.216', 'color': 0, 'x': 0.150668, 'y': 0.079452, 'z': 0.070702, 'P1': 0.150668, 'P2': 0.079452, 'P3': 0.070702, 'P4': 0.069038, 'P5': 0.023303, 'P6': 0.054505, 'P7': -0.031676, 'P8': -0.008710, 'P9': 0.014912, 'P10': -0.074189 };
+g_spherePositions['Aus.K9.217'] = { 'name': 'Aus.K9.217', 'color': 0, 'x': 0.058230, 'y': -0.029682, 'z': 0.205425, 'P1': 0.058230, 'P2': -0.029682, 'P3': 0.205425, 'P4': 0.037131, 'P5': 0.014055, 'P6': 0.006320, 'P7': 0.017920, 'P8': -0.013428, 'P9': -0.026020, 'P10': -0.009737 };
+g_spherePositions['Aus.K9.218'] = { 'name': 'Aus.K9.218', 'color': 0, 'x': 0.157246, 'y': -0.090482, 'z': -0.007838, 'P1': 0.157246, 'P2': -0.090482, 'P3': -0.007838, 'P4': -0.040387, 'P5': -0.029480, 'P6': -0.080543, 'P7': 0.060744, 'P8': -0.013309, 'P9': -0.024713, 'P10': -0.093808 };
+g_spherePositions['Aus.K9.222'] = { 'name': 'Aus.K9.222', 'color': 0, 'x': 0.029774, 'y': -0.093290, 'z': 0.039006, 'P1': 0.029774, 'P2': -0.093290, 'P3': 0.039006, 'P4': 0.004474, 'P5': -0.021223, 'P6': -0.107079, 'P7': 0.051671, 'P8': 0.044959, 'P9': -0.069299, 'P10': 0.006419 };
+g_spherePositions['Aus.K9.223'] = { 'name': 'Aus.K9.223', 'color': 0, 'x': -0.105370, 'y': -0.018089, 'z': -0.065637, 'P1': -0.105370, 'P2': -0.018089, 'P3': -0.065637, 'P4': 0.126677, 'P5': 0.089679, 'P6': -0.096016, 'P7': 0.077244, 'P8': 0.125455, 'P9': -0.081533, 'P10': 0.051063 };
+g_spherePositions['Aus.K9.224'] = { 'name': 'Aus.K9.224', 'color': 0, 'x': 0.007580, 'y': 0.181712, 'z': 0.058481, 'P1': 0.007580, 'P2': 0.181712, 'P3': 0.058481, 'P4': -0.077247, 'P5': 0.062065, 'P6': -0.040324, 'P7': 0.098105, 'P8': -0.013358, 'P9': 0.037706, 'P10': 0.013780 };
+g_spherePositions['Aus.K9.225'] = { 'name': 'Aus.K9.225', 'color': 0, 'x': -0.223523, 'y': 0.084750, 'z': 0.131709, 'P1': -0.223523, 'P2': 0.084750, 'P3': 0.131709, 'P4': 0.047817, 'P5': -0.009892, 'P6': -0.056985, 'P7': 0.086079, 'P8': -0.105557, 'P9': 0.015695, 'P10': -0.040392 };
+g_spherePositions['Aus.K9.226'] = { 'name': 'Aus.K9.226', 'color': 0, 'x': -0.143604, 'y': -0.177183, 'z': 0.038649, 'P1': -0.143604, 'P2': -0.177183, 'P3': 0.038649, 'P4': 0.088557, 'P5': 0.208471, 'P6': 0.038960, 'P7': 0.044168, 'P8': -0.030839, 'P9': 0.012690, 'P10': -0.001822 };
+g_spherePositions['Aus.K9.228'] = { 'name': 'Aus.K9.228', 'color': 0, 'x': 0.134257, 'y': 0.090676, 'z': 0.103459, 'P1': 0.134257, 'P2': 0.090676, 'P3': 0.103459, 'P4': 0.101317, 'P5': 0.052035, 'P6': 0.020973, 'P7': -0.038826, 'P8': -0.049848, 'P9': 0.066187, 'P10': -0.058766 };
+g_spherePositions['Aus.K9.230'] = { 'name': 'Aus.K9.230', 'color': 0, 'x': -0.289988, 'y': 0.087094, 'z': -0.112744, 'P1': -0.289988, 'P2': 0.087094, 'P3': -0.112744, 'P4': 0.007234, 'P5': -0.119014, 'P6': 0.107683, 'P7': 0.074672, 'P8': -0.131152, 'P9': 0.016991, 'P10': -0.109678 };
+g_spherePositions['Aus.K9.231'] = { 'name': 'Aus.K9.231', 'color': 0, 'x': 0.161873, 'y': 0.024802, 'z': -0.020201, 'P1': 0.161873, 'P2': 0.024802, 'P3': -0.020201, 'P4': 0.097488, 'P5': 0.082441, 'P6': -0.005120, 'P7': 0.120412, 'P8': -0.030729, 'P9': -0.055799, 'P10': 0.029907 };
+g_spherePositions['Aus.K9.233'] = { 'name': 'Aus.K9.233', 'color': 0, 'x': -0.041077, 'y': 0.011781, 'z': 0.050093, 'P1': -0.041077, 'P2': 0.011781, 'P3': 0.050093, 'P4': 0.239410, 'P5': 0.003258, 'P6': -0.078554, 'P7': 0.096314, 'P8': -0.001479, 'P9': 0.054817, 'P10': 0.007894 };
+g_spherePositions['Aus.K9.235'] = { 'name': 'Aus.K9.235', 'color': 0, 'x': -0.054543, 'y': 0.090681, 'z': 0.088342, 'P1': -0.054543, 'P2': 0.090681, 'P3': 0.088342, 'P4': 0.064206, 'P5': 0.043992, 'P6': -0.076412, 'P7': -0.099429, 'P8': -0.150111, 'P9': 0.026092, 'P10': 0.001735 };
+g_spherePositions['Aus.K9.236'] = { 'name': 'Aus.K9.236', 'color': 0, 'x': 0.119329, 'y': -0.025416, 'z': -0.044391, 'P1': 0.119329, 'P2': -0.025416, 'P3': -0.044391, 'P4': 0.076310, 'P5': 0.040047, 'P6': -0.063314, 'P7': 0.033103, 'P8': 0.025366, 'P9': -0.024706, 'P10': -0.007673 };
+g_spherePositions['Aus.K9.237'] = { 'name': 'Aus.K9.237', 'color': 0, 'x': 0.179096, 'y': 0.043173, 'z': -0.069585, 'P1': 0.179096, 'P2': 0.043173, 'P3': -0.069585, 'P4': 0.116925, 'P5': 0.013424, 'P6': -0.004148, 'P7': 0.083190, 'P8': -0.090969, 'P9': 0.022199, 'P10': -0.009033 };
+g_spherePositions['Aus.K9.239'] = { 'name': 'Aus.K9.239', 'color': 0, 'x': 0.201237, 'y': 0.097434, 'z': -0.100394, 'P1': 0.201237, 'P2': 0.097434, 'P3': -0.100394, 'P4': 0.142963, 'P5': 0.068214, 'P6': 0.035437, 'P7': 0.036867, 'P8': -0.062009, 'P9': 0.033785, 'P10': -0.047974 };
+g_spherePositions['Aus.K9.240'] = { 'name': 'Aus.K9.240', 'color': 0, 'x': 0.140927, 'y': 0.053194, 'z': -0.001263, 'P1': 0.140927, 'P2': 0.053194, 'P3': -0.001263, 'P4': 0.057883, 'P5': 0.045535, 'P6': 0.038103, 'P7': 0.094458, 'P8': -0.053513, 'P9': 0.004162, 'P10': -0.006084 };
+g_spherePositions['Aus.K9.241'] = { 'name': 'Aus.K9.241', 'color': 0, 'x': 0.002225, 'y': 0.134310, 'z': 0.055540, 'P1': 0.002225, 'P2': 0.134310, 'P3': 0.055540, 'P4': -0.035180, 'P5': 0.073355, 'P6': -0.085972, 'P7': 0.086806, 'P8': 0.097601, 'P9': 0.104862, 'P10': -0.006154 };
+
+var g_ellipsesDimensions = new Array();
+var g_segments = 8, g_rings = 8, g_radius = 0.005968;
+var g_xAxisLength = 0.497305;
+var g_yAxisLength = 0.411182;
+var g_zAxisLength = 0.363464;
+var g_xMaximumValue = 0.207317;
+var g_yMaximumValue = 0.181712;
+var g_zMaximumValue = 0.205425;
+var g_xMinimumValue = -0.289988;
+var g_yMinimumValue = -0.229470;
+var g_zMinimumValue = -0.158039;
+var g_maximum = 0.289988;
+var g_pc1Label = "PC1 (7.66 %)";
+var g_pc2Label = "PC2 (4.80 %)";
+var g_pc3Label = "PC3 (2.52 %)";
+var g_number_of_custom_axes = 0;
+var g_fractionExplained = [0.076583, 0.048006, 0.025171, 0.019338, 0.018588, 0.015105, 0.013537, 0.012514, 0.011335, 0.010915];
+var g_fractionExplainedRounded = [7.66, 4.80, 2.52, 1.93, 1.86, 1.51, 1.35, 1.25, 1.13, 1.09];
+
+var g_taxaPositions = new Array();
+
+
+var g_vectorPositions = new Array();
+
+var g_comparisonPositions = new Array();
+var g_isSerialComparisonPlot = true;
+document.getElementById("logo").style.display = 'none';
+document.getElementById("logotable").style.display = 'none';
+
+ </script>
+</head>
+
+<body>
+
+<div id="overlay">
+    <div>
+    <img src="emperor_required_resources/img/emperor.png" alt="Emperor" id="small-logo"/>
+        <h1>WebGL is not enabled!</h1>
+        <p>Emperor's visualization framework is WebGL based, it seems that your system doesn't have this resource available. Here is what you can do:</p>
+        <p id="explanation"><strong>Chrome:</strong> Type "chrome://flags/" into the address bar, then search for "Disable WebGL". Disable this option if you haven't already. <em>Note:</em> If you follow these steps and still don't see an image, go to "chrome://flags/" and then search for "Override software rendering list" and enable this option.</p>
+        <p id="explanation"><strong>Safari:</strong> Open Safari's menu and select Preferences. Click on the advanced tab, and then check "Show Developer" menu. Then open the "Developer" menu and select "Enable WebGL".</p>
+        <p id="explanation"><strong>Firefox:</strong> Go to Options through Firefox > Options or Tools > Options. Go to Advanced, then General. Check "Use hardware acceleration when available" and restart Firefox.</p>
+        <p id="explanation"><strong>Other browsers:</strong> The only browsers that support WebGL are Chrome, Safari, and Firefox. Please switch to these browsers when using Emperor.</p>
+        <p id="explanation"><em>Note:</em> Once you went through these changes, reload the page and it should work!</p>
+        <p id="source">Sources: Instructions for <a href="https://www.biodigitalhuman.com/home/enabling-webgl.html">Chrome and Safari</a>, and <a href="http://www.infewbytes.com/?p=144">Firefox</a></p>
+    </div>
+</div>
+
+<div id="emperor-plot-toggle">
+    <form>
+      <div id="plottype">
+        <input id="pcoa" type="radio" id="pcoa" name="plottype" checked="checked" /><label for="pcoa">PCoA</label>
+        <input id="parallel" type="radio" id="parallel" name="plottype" /><label for="parallel">Parallel</label>
+      </div>
+    </form>
+</div>
+<div id="pcoaPlotWrapper" class="emperor-plot-wrapper">
+    <label id="pointCount" class="ontop">
+    </label>
+
+    <div id="finder" class="arrow-right">
+    </div>
+
+    <div id="labels" class="unselectable">
+    </div>
+
+    <div id="taxalabels" class="unselectable">
+    </div>
+
+    <div id="axislabels" class="axis-labels">
+    </div>
+
+    <div id="main-plot">
+    </div>
+</div>
+
+<div id="parallelPlotWrapper" class="emperor-plot-wrapper">
+</div>
+
+<div id="emperor-separator" class="emperor-separator" ondblclick="separatorDoubleClick()"></div>
+
+<div id="emperor-menu">
+    <div id="emperor-menu-tabs">
+        <ul id="emperor-menu-list">
+            <li><a href="#keytab">Key</a></li>
+            <li><a href="#colorby">Colors</a></li>
+            <li><a href="#showby">Visibility</a></li>
+            <li><a href="#scalingby">Scaling</a></li>
+            <li><a href="#labelby">Labels</a></li>
+            <li><a href="#axes">Axes</a></li>
+            <li><a href="#animations">Animations</a></li>
+            <li><a href="#options">Options</a></li>
+        </ul>
+        <div id="keytab" class="emperor-tab-div">
+            <form name="keyFilter">
+                <label>Filter  </label><input name="filterBox" id="searchBox" type="text" onkeyup="filterKey()"></input>
+            </form>
+            <div id="key">
+            </div>
+        </div>
+        <div id="colorby" class="emperor-tab-div">
+            <select id="colormap-drop-down" class="emperor-tab-drop-down" onchange="colorByMenuChanged()"></select>
+            <br><br>
+            <select id="colorbycombo" onchange="colorByMenuChanged()" class="emperor-tab-drop-down">
+            </select>
+            <div class="list" id="colorbylist">
+            </div>
+        </div>
+        <div id="showby" class="emperor-tab-div">
+            <table class="emperor-tab-table">
+                <tr>
+                    <td>
+                        <select id="showbycombo" onchange="showByMenuChanged()" class="emperor-tab-drop-down">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list" id="showbylist" style="height:100%;width:100%">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 12px; padding-right:12px;">
+                        <hr class='section-break'>
+                        <br>
+                        <label for="sphereopacity" class="text">Global Sphere Opacity</label>
+                        <label id="sphereopacity" class="slidervalue"></label>
+                        <div id="sopacityslider" class="slider-range-max"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <button id="toggle-visibility-selection-button" onClick="toggleVisibleCategories()">Invert Selected</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="scalingby" class="emperor-tab-div">
+            <table class="emperor-tab-table">
+                <tr>
+                    <td>
+                        <select id="scalingbycombo" onchange="scalingByMenuChanged()" class="emperor-tab-drop-down">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="list" id="scalingbylist" style="height:100%;width:100%">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-left: 12px; padding-right:12px;">
+                        <hr class='section-break'>
+                        <br>
+                        <label for="sphereradius" class="text">Global Sphere Scale</label>
+                        <label id="sphereradius" class="slidervalue"></label>
+                        <div id="sradiusslider" class="slider-range-max"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="labelby" class="emperor-tab-div">
+            <div id="labels-top">
+                <form name="plotoptions">
+                    <input type="checkbox" onClick="toggleLabels()">Samples Label Visibility</input>
+                </form>
+                <br>
+                <label for="labelopacity" class="text">Label Opacity</label>
+                <label id="labelopacity" class="slidervalue"></label>
+                <div id="lopacityslider" class="slider-range-max"></div>
+                <div id="label-color-holder clearfix">
+                    <table class="emperor-tab-table">
+                        <tr><td><div id="labelColor" class="colorbox"></div></td><td><label>Master Label Color</label></td></tr>
+                        <br><br>
+                </table></div>
+            </div>
+            <br>
+            <select id="labelcombo" onchange="labelMenuChanged()" class="emperor-tab-drop-down">
+            </select>
+            <div class="list" id="label-list">
+            </div>
+        </div>
+        <div id="axes" class="emperor-tab-div">
+            <div id="pcoaaxes">
+                <div class="list" id="axeslist">
+                </div>
+            </div>
+        </div>
+        <div id="animations" class="emperor-tab-div">
+            <table class="emperor-tab-table-with-sliders">
+                <tr>
+                    <td>
+                        <a id="reset-button" class="media-button" href="javascript:void(0);" onclick="javascript:resetAnimation()"><img src="emperor_required_resources/img/reset.png" ></img></a>
+                        <a id="play-button" class="media-button" href="javascript:void(0);" onclick="javascript:playAnimation()"><img src="emperor_required_resources/img/play.png"></img></a>
+                        <a id="pause-button" class="media-button" href="javascript:void(0);" onclick="javascript:pauseAnimation()"><img src="emperor_required_resources/img/pause.png"></img></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="animation-speed" class="text">Speed</label>
+                        <label id="animation-speed" class="slidervalue"></label>
+                        <div id="animation-speed-slider" class="slider-range-max"></div>
+                        <div id="labelColorHolder clearfix">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br><label for="gradient-category-drop-down" class="text">Gradient Category</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="gradient-category-drop-down" class="emperor-tab-drop-down"></select><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="trajectory-category-drop-down" class="text">Trajectory Category</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="trajectory-category-drop-down" class="emperor-tab-drop-down" onchange="colorAnimationsByCategoryChanged()"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="emperor-animation-color-selector">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="options" class="emperor-tab-div">
+            <table class="emperor-tab-table">
+                <tr><td><div id="axeslabelscolor" class="colorbox" name="axeslabelscolor"></div></td><td title="Axes Labels Color">Axes Labels Color</td></tr>
+                <tr><td><div id="axescolor" class="colorbox" name="axescolor"></div></td><td title="Axes Color Title">Axes Color</td></tr>
+                <tr><td><div id="rendererbackgroundcolor" class="colorbox" name="rendererbackgroundcolor"></div></td><td title="Background Color Title">Background Color</td></tr>
+                <tr><td colspan="2">
+                        <div id="pcoaviewoptions" class="">
+                            <form name="settingsoptionscolor">
+                            </form>
+                            <div id="pcoaoptions" class="">
+                                <form name="settingsoptions">
+                                    <input type="checkbox" onchange="toggleScaleCoordinates(this)" id="scale_checkbox" name="scale_checkbox">Scale coords by percent explained</input>
+                                </form>
+                            </div>
+                            <br><input id="reset" class="button" type="submit" value="Recenter Camera" style="" onClick="resetCamera()">
+                            <br><br>
+                            <hr class='section-break'>
+                            <br>Filename <small>(only letters, numbers, ., - and _)</small>:
+                            <br><input name="saveas_name" id="saveas_name" value="screenshot" type="text"/>
+                            <br><input id="saveas_legends" class="checkbox" type="checkbox" style=""> Create legend
+                            <input id="saveas" class="button" type="submit" value="Save as SVG" style="" onClick="saveSVG()"/>
+                            <br><br>For a PNG, simply press 'ctrl+p'.
+                            <div id="paralleloptions" class="">
+                            </div>
+                        </div>
+                        <br>
+                </td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

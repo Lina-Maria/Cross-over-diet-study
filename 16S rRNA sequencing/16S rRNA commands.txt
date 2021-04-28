@@ -1,0 +1,385 @@
+Project: Project_pepperAustralia Redo 12/14/18
+Date: 12/14/18
+
+#Since all three sets ran were too big and caused usearch61 to run out of memory I will have to split the sets further down
+#I will make each set have about 20 samples each since 42 was too big
+
+#Split 1
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-1.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-1.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-1.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-1/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-1.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-1/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-1/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 2
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-2.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-2.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-2.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-2/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-2.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-2/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-2/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 3
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-3.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-3.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-3.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-3/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-3.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-3/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-3/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 4
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-4.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-4.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-4.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-4/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-4.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-4/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-4/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 5
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-5.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-5.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-5.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-5/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-5.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-5/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-5/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 6
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-6.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-6.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-6.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-6/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-6.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-6/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-6/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 7
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-7.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-7.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-7.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-7/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-7.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-7/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-7/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 8
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-8.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-8.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-8.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-8/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-8.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-8/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-8/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 9
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-9.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-9.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-9.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-9/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+  
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-9.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-9/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-9/usearch_checked_chimeras/chimeras.txt -n
+  
+#Split 10 
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-10.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/101014JS515Fillumina1-mapping2-split-10.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-10.fna \
+  -m usearch61 \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-10/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-10.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-10/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-10/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 11
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-11.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/101014JS515Fillumina2-mapping2-split-11.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-11.fna \
+  -m usearch61 -o $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-11/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-11.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-11/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-11/usearch_checked_chimeras/chimeras.txt -n
+
+#Split 12
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-12.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/101014JS515Fillumina2-mapping2-split-12.txt
+
+identify_chimeric_seqs.py \
+  -i $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-12.fna \
+  -m usearch61 -o $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-12/usearch_checked_chimeras/ \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/split_libraries_fastq_processedseqs/seqs-split-12.fna \
+  -o $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-12/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  -s $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-12/usearch_checked_chimeras/chimeras.txt -n
+
+cat \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-1/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-2/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-3/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-4/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-5/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-6/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-7/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-8/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-9/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina1/fasta-qual-mapping-files/chimera_removed_split-10/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-11/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  $pwd/Project_pepperAustralia/101014JS515Fillumina2/fasta-qual-mapping-files/chimera_removed_split-12/usearch_checked_chimeras/seqs_chimeras_removed.fna \
+  >> $pwd/Project_pepperAustralia/combined/seqs_chimeras_removed_combined.fna
+
+filter_fasta.py \
+  -f $pwd/Project_pepperAustralia/combined/seqs_chimeras_removed_combined.fna \
+  -o $pwd/Project_pepperAustralia/combined/seqs_combined_filtered.fna \
+  --sample_id_fp $pwd/Project_pepperAustralia/Mapping_file_Pepper_with_metadata_12132018.txt
+
+pick_open_reference_otus.py \
+  -i $pwd/Project_pepperAustralia/combined/seqs_combined_filtered.fna\
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/
+
+biom summarize-table \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/otu_table_mc2_w_tax.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/summary_open_ref.txt
+
+filter_taxa_from_otu_table.py \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/otu_table_mc2_w_tax.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/filtered_open_otu_table.biom \
+  -n Unassigned,p__Cyanobacteria,c__Chloroplast,f__mitochondria
+
+biom summarize-table \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/filtered_open_otu_table.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/summary_filtered_open_otu_table.txt
+
+single_rarefaction.py \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/filtered_open_otu_table.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/rarified_open_otu_table_12390.biom \
+  -d 12390
+
+biom summarize-table \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/rarified_open_otu_table_12390.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/summary_open_ref_12390.txt
+
+sort_otu_table.py \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/rarified_open_otu_table_12390.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom \
+  -l $pwd/Project_pepperAustralia/Mapping_file_Pepper_with_metadata_12132018.txt
+
+alpha_rarefaction.py \
+  -i $pwd/Project_pepperAustralia/combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom \
+  -o $pwd/Project_pepperAustralia/combined/open_reference_otus/arare/ \
+  -m $pwd/Project_pepperAustralia/Mapping_file_Pepper_with_metadata_12132018.txt \
+  -p $pwd/Project_pepperAustralia/alphaparams.txt \
+  -t $pwd/Project_pepperAustralia/combined/open_reference_otus/rep_set.tre
+
+alpha_rarefaction.py \
+  -i combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom \
+  -o combined/open_reference_otus/arare/ \
+  -m Mapping_file_Pepper_with_metadata_12132018.txt \
+  -p alphaparams.txt \
+  -t combined/open_reference_otus/rep_set.tre
+
+alpha_diversity.py \
+  -i combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom \
+  -m chao1,observed_species,shannon,goods_coverage \
+  -o combined/open_reference_otus/arare/diversity_indices.txt
+
+beta_diversity_through_plots.py \
+  -i combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom  \
+  -o combined/open_reference_otus/bdiv/ \
+  -m Mapping_file_Pepper_with_metadata_12132018.txt \
+  -t combined/open_reference_otus/rep_set.tre
+
+make_2d_plots.py \
+  -i combined/open_reference_otus/bdiv/unweighted_unifrac_pc.txt \
+  -m Mapping_file_Pepper_with_metadata_12132018.txt \
+  -o combined/open_reference_otus/bdiv/unweighted/
+
+make_2d_plots.py \
+  -i combined/open_reference_otus/bdiv/weighted_unifrac_pc.txt \
+  -m Mapping_file_Pepper_with_metadata_12132018.txt \
+  -o combined/open_reference_otus/bdiv/weighted/
+  
+summarize_taxa_through_plots.py \
+  -i combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom \
+  -m Mapping_file_Pepper_with_metadata_12132018.txt \
+  -o taxa_summary/
+
+summarize_taxa.py \
+  -i combined/open_reference_otus/sorted_rarified_open_otu_table_12390.biom \
+  -o summarize_taxa_7/ \
+  -m Mapping_file_Pepper_with_metadata_12132018.txt -L 7
+
+
+#PICRUSt2 Commands
+
+pick_closed_reference_otus.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/seqs_combined_filtered.fna \
+  -r $pwd/gg_13_8_otus/rep_set/97_otus.fasta -t $pwd/gg_13_8_otus/taxonomy/97_otu_taxonomy.txt \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/
+
+filter_taxa_from_otu_table.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/otu_table.biom \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/filtered_closed_otu_table.biom \
+  -n Unassigned,p__Cyanobacteria,c__Chloroplast,f__mitochondria
+
+normalize_by_copy_number.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/filtered_closed_otu_table.biom \
+  -g 13_5 \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/normalized_otus.biom
+
+predict_metagenomes.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/normalized_otus.biom \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes.biom
+
+categorize_by_function.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes.biom \
+  -c KEGG_Pathways -l 1 \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L1.biom
+
+categorize_by_function.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes.biom \
+  -c KEGG_Pathways -l 2 \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L2.biom
+
+categorize_by_function.py \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes.biom \
+  -c KEGG_Pathways -l 3 \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L3.biom
+
+biom convert \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L1.biom \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L1.txt \
+  --to-tsv
+
+biom convert \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L2.biom \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L2.txt \
+  --to-tsv
+
+biom convert \
+  -i $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L3.biom \
+  -o $pwd/Project_pepperAustralia/Rerun121318/combined/closed_reference_otus/PICRUSt/predicted_metagenomes_L3.txt \
+  --to-tsv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
